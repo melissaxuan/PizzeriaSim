@@ -5,7 +5,7 @@ public class ChicagoPizza implements PizzaFactory{
         return new Deluxe();
     }
 
-    public Pizza CreateMeatzza() {
+    public Pizza createMeatzza() {
         return new Meatzza();
     }
 

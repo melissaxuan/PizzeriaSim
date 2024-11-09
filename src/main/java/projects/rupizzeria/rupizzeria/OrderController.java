@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
@@ -11,11 +12,15 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class OrderController {
+    private final double MIN_OPACITY = 0.0;
+    private final double MAX_OPACITY = 1.0;
+    private final int MAX_TOPPINGS = 7;
 
     @FXML
     private Button bt_add;
@@ -80,9 +85,11 @@ public class OrderController {
     @FXML
     private Text txt_toppings;
 
-    private final double MIN_OPACITY = 0.0;
-    private final double MAX_OPACITY = 1.0;
-    private final int MAX_TOPPINGS = 7;
+    private MainController mainController;
+    private Stage stage;
+    private Scene primaryScene;
+    private Stage primaryStage;
+
     // private Order currOrder; ---- add to main controller
     // private ArrayList<Order> orderList; ---- add to main controller
 
@@ -97,6 +104,14 @@ public class OrderController {
         lv_availtoppings.setItems(FXCollections.observableArrayList(Topping.values()));
         disableAll();
     }
+
+    public void setMainController(MainController controller, Stage stage, Stage primaryStage, Scene primaryScene) {
+        mainController = controller;
+        this.stage = stage;
+        this.primaryStage = primaryStage;
+        this.primaryScene = primaryScene;
+    }
+
     @FXML
     void addTopping(ActionEvent event) {
         if (lv_availtoppings.getSelectionModel().getSelectedItem() != null &&
@@ -108,6 +123,29 @@ public class OrderController {
 
     @FXML
     void placePizzaOrder(ActionEvent event) {
+        String crust = "Chicago";
+        PizzaFactory pizzaFactory;
+        if (tg_crust.getSelectedToggle().toString().contains("Chicago Style")) {
+            pizzaFactory = new ChicagoPizza();
+
+        }
+        else {
+            crust = "NY";
+            pizzaFactory = new NYPizza();
+        }
+
+        Pizza pizza = pizzaFactory.createDeluxe();
+        setSpecialtyCrust(pizza, pizzaFactory, crust);
+
+        if (tg_size.getSelectedToggle().toString().contains("Small")) {
+            pizza.setSize(Size.SMALL);
+        }
+        else if (tg_size.getSelectedToggle().toString().contains("Medium")) {
+            pizza.setSize(Size.MEDIUM);
+        }
+        else {
+            pizza.setSize(Size.LARGE);
+        }
 
     }
 
@@ -322,5 +360,41 @@ public class OrderController {
         bt_remove.setOpacity(MIN_OPACITY);
         bt_add.setDisable(true);
         bt_remove.setDisable(true);
+    }
+
+    /**
+     * Helper method to set pizza crust and specialty type.
+     */
+    private void setSpecialtyCrust(Pizza pizza, PizzaFactory pizzaFactory, String crust) {
+        switch (cb_pizzatype.getValue()) {
+            case "Deluxe Pizza" :
+                pizza = pizzaFactory.createDeluxe();
+                if (crust.equals("Chicago"))
+                    pizza.setCrust(Crust.DEEPDISH);
+                else
+                    pizza.setCrust(Crust.BROOKLYN);
+                break;
+            case "BBQ Chicken Pizza" :
+                pizza = pizzaFactory.createBBQChicken();
+                if (crust.equals("Chicago"))
+                    pizza.setCrust(Crust.PAN);
+                else
+                    pizza.setCrust(Crust.THIN);
+                break;
+            case "Meatzza Pizza" :
+                pizza = pizzaFactory.createMeatzza();
+                if (crust.equals("Chicago"))
+                    pizza.setCrust(Crust.STUFFED);
+                else
+                    pizza.setCrust(Crust.HANDTOSSED);
+                break;
+            case "Build Your Own Pizza" :
+                pizza = pizzaFactory.createBuildYourOwn();
+                if (crust.equals("Chicago"))
+                    pizza.setCrust(Crust.PAN);
+                else
+                    pizza.setCrust(Crust.HANDTOSSED);
+                break;
+        }
     }
 }

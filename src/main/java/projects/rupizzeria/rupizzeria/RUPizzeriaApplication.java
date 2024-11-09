@@ -10,7 +10,7 @@ import java.io.IOException;
 public class RUPizzeriaApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(RUPizzeriaApplication.class.getResource("RUPizzaria.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(RUPizzeriaApplication.class.getResource("RUPizzeria.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 650, 500);
         MainController mainController = fxmlLoader.getController();
         mainController.setPrimaryStage(stage, scene);
