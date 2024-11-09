@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class BuildYourOwn extends Pizza{
+public class BuildYourOwn extends Pizza {
     private final double SMALL_PRICE = 8.99;
     private final double MED_PRICE = 10.99;
     private final double LARGE_PRICE = 12.99;
