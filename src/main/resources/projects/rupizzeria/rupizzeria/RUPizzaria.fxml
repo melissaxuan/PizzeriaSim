@@ -19,7 +19,7 @@
   <Label fx:id="welcomeText" />
    <HBox fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="650.0" spacing="20.0">
       <children>
-         <Button fx:id="B_OrderPlaced1" contentDisplay="TOP" onAction="#onHelloButtonClick" text="Orders Placed">
+         <Button fx:id="B_OrderPlaced1" contentDisplay="TOP" onAction="#onOrdersPlaced" text="Orders Placed">
             <graphic>
                <ImageView fx:id="IV_OrderPlaced1" fitHeight="130.0" fitWidth="195.0" pickOnBounds="true" preserveRatio="true">
                   <image>
@@ -32,7 +32,7 @@
             <graphic>
                <ImageView fx:id="IV_OrderPlace2d1" fitHeight="130.0" fitWidth="195.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@Images/orderPizzapic.jpg" />
+                     <Image url="@Images/spongeorderpic.JPG" />
                   </image>
                   <viewport>
                      <Rectangle2D />
@@ -42,9 +42,9 @@
          </Button>
         <Button fx:id="B_CurrentOrder" contentDisplay="TOP" onAction="#onHelloButtonClick" text="Current Order">
             <graphic>
-               <ImageView fx:id="IV_OrderPlace2d" fitHeight="130.0" fitWidth="165.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fx:id="IV_OrderPlace2d" fitHeight="130.0" fitWidth="152.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@Images/currentOrder.png" />
+                     <Image url="@Images/cartSponge2.JPG" />
                   </image>
                   <viewport>
                      <Rectangle2D />
