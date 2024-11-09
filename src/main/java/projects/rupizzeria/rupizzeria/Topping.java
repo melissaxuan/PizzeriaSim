@@ -2,16 +2,16 @@ package projects.rupizzeria.rupizzeria;
 
 public enum Topping {
     MUSHROOM(),
-    PINNEAPPLE(),
-    BLACKOLIVES(),
-    CHEDDER(),
+    PINEAPPLE(),
+    BLACK_OLIVES(),
+    CHEDDAR(),
     PROVOLONE(),
     SPINACH(),
     HAM(),
     BEEF(),
     SAUSAGE(),
     PEPPERONI(),
-    GREENPEPPER(),
+    GREEN_PEPPER(),
     ONION(),
     OXTAIL(),
     BBQ_CHICKEN()

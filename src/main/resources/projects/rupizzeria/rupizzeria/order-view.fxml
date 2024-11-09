@@ -57,12 +57,12 @@
             </Text>
             <VBox prefWidth="100.0" spacing="5.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <children>
-                  <RadioButton mnemonicParsing="false" selected="true" text="Chicago Style">
+                  <RadioButton fx:id="rb_chicagocrust" mnemonicParsing="false" selected="true" text="Chicago Style">
                      <toggleGroup>
                         <ToggleGroup fx:id="tg_crust" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="NY Style" toggleGroup="$tg_crust" />
+                  <RadioButton fx:id="rb_nycrust" mnemonicParsing="false" text="NY Style" toggleGroup="$tg_crust" />
                </children>
                <GridPane.margin>
                   <Insets />
@@ -78,13 +78,13 @@
             </Text>
             <VBox prefWidth="100.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
-                  <RadioButton mnemonicParsing="false" selected="true" text="Small">
+                  <RadioButton fx:id="rb_smallsize" mnemonicParsing="false" selected="true" text="Small">
                      <toggleGroup>
                         <ToggleGroup fx:id="tg_size" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="Medium" toggleGroup="$tg_size" />
-                  <RadioButton mnemonicParsing="false" text="Large" toggleGroup="$tg_size" />
+                  <RadioButton fx:id="rb_mediumsize" mnemonicParsing="false" text="Medium" toggleGroup="$tg_size" />
+                  <RadioButton fx:id="rb_largesize" mnemonicParsing="false" text="Large" toggleGroup="$tg_size" />
                </children>
                <padding>
                   <Insets left="10.0" right="10.0" top="10.0" />
@@ -148,7 +148,7 @@
                   <Insets right="5.0" />
                </GridPane.margin>
             </Text>
-            <Button fx:id="bt_placeorder" mnemonicParsing="false" onAction="#placePizzaOrder" text="Place Order" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+            <Button fx:id="bt_placeorder" mnemonicParsing="false" onAction="#placePizzaOrder" text="Add Pizza to Current Order" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
                <GridPane.margin>
                   <Insets bottom="20.0" left="20.0" right="5.0" top="20.0" />
                </GridPane.margin>

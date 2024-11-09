@@ -1,6 +1,7 @@
 package projects.rupizzeria.rupizzeria;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class OrderController {
 
@@ -80,8 +82,9 @@ public class OrderController {
 
     private final double MIN_OPACITY = 0.0;
     private final double MAX_OPACITY = 1.0;
-    private Order currOrder;
-    private ArrayList<Order> orderList;
+    private final int MAX_TOPPINGS = 7;
+    // private Order currOrder; ---- add to main controller
+    // private ArrayList<Order> orderList; ---- add to main controller
 
     @FXML
     void initialize() {
@@ -96,7 +99,11 @@ public class OrderController {
     }
     @FXML
     void addTopping(ActionEvent event) {
-
+        if (lv_availtoppings.getSelectionModel().getSelectedItem() != null &&
+            lv_chosentoppings.getItems().size() < MAX_TOPPINGS) {
+            lv_chosentoppings.getItems().add(lv_availtoppings.getSelectionModel().getSelectedItem());
+            lv_availtoppings.getItems().remove(lv_availtoppings.getSelectionModel().getSelectedIndex());
+        }
     }
 
     @FXML
@@ -106,7 +113,10 @@ public class OrderController {
 
     @FXML
     void removeTopping(ActionEvent event) {
-
+        if (lv_chosentoppings.getSelectionModel().getSelectedItem() != null) {
+            lv_availtoppings.getItems().add(lv_chosentoppings.getSelectionModel().getSelectedItem());
+            lv_chosentoppings.getItems().remove(lv_chosentoppings.getSelectionModel().getSelectedIndex());
+        }
     }
 
     @FXML
@@ -129,10 +139,11 @@ public class OrderController {
                 break;
             }
         }
+        enablePlaceOrder();
     }
 
     /**
-     * Enables the crust and size options for Deluxe pizza, and the toppings list.
+     * Enables the crust and size options for Deluxe pizza, and its toppings list.
      */
     private void setupDeluxe() {
         enableCrust();
@@ -142,8 +153,55 @@ public class OrderController {
         rb_smallsize.setText("Small: $16.99");
         rb_mediumsize.setText("Medium: $18.99");
         rb_largesize.setText("Large: $20.99");
-        enableToppings();
+        showFixedToppings();
+        lv_availtoppings.setItems(FXCollections.observableArrayList(new ArrayList<Topping>(Arrays.asList(
+                Topping.SAUSAGE, Topping.PEPPERONI, Topping.GREEN_PEPPER, Topping.ONION, Topping.MUSHROOM))));
+    }
 
+    /**
+     * Enables the crust and size options for BBQ Chicken pizza, and its toppings list.
+     */
+    private void setupBBQChicken() {
+        enableCrust();
+        rb_chicagocrust.setText("Chicago Style: Pan");
+        rb_nycrust.setText("NY Style: Thin");
+        enableSize();
+        rb_smallsize.setText("Small: $14.99");
+        rb_mediumsize.setText("Medium: $16.99");
+        rb_largesize.setText("Large: $19.99");
+        showFixedToppings();
+        lv_availtoppings.getItems().removeAll();
+        lv_availtoppings.setItems(FXCollections.observableArrayList(new ArrayList<Topping>(Arrays.asList(
+                Topping.BBQ_CHICKEN, Topping.GREEN_PEPPER, Topping.PROVOLONE, Topping.CHEDDAR))));
+    }
+
+    /**
+     * Enables the crust and size options for Meatzza pizza, and its toppings list.
+     */
+    private void setupMeatzza() {
+        enableCrust();
+        rb_chicagocrust.setText("Chicago Style: Stuffed");
+        rb_nycrust.setText("NY Style: Hand-tossed");
+        enableSize();
+        rb_smallsize.setText("Small: $17.99");
+        rb_mediumsize.setText("Medium: $19.99");
+        rb_largesize.setText("Large: $21.99");
+        showFixedToppings();
+        lv_availtoppings.getItems().removeAll();
+        lv_availtoppings.setItems(FXCollections.observableArrayList(new ArrayList<Topping>(Arrays.asList(
+                Topping.SAUSAGE, Topping.PEPPERONI, Topping.BEEF, Topping.HAM))));
+    }
+
+    /**
+     * Enables the crust, size, and toppings options for Build Your Own Pizza.
+     */
+    private void setupBYO() {
+        enableAll();
+        rb_chicagocrust.setText("Chicago Style: Pan");
+        rb_nycrust.setText("NY Style: Hand-tossed");
+        rb_smallsize.setText("Small: $8.99");
+        rb_mediumsize.setText("Medium: $10.99");
+        rb_largesize.setText("Large: $12.99");
     }
 
     /**
@@ -189,6 +247,9 @@ public class OrderController {
         enablePlaceOrder();
     }
 
+    /**
+     * Helper method to enable crust options.
+     */
     private void enableCrust() {
         txt_crust.setOpacity(MAX_OPACITY);
         rb_chicagocrust.setOpacity(MAX_OPACITY);
@@ -197,6 +258,9 @@ public class OrderController {
         rb_nycrust.setDisable(false);
     }
 
+    /**
+     * Helper method to enable size options.
+     */
     private void enableSize() {
         txt_size.setOpacity(MAX_OPACITY);
         rb_smallsize.setOpacity(MAX_OPACITY);
@@ -207,11 +271,14 @@ public class OrderController {
         rb_largesize.setDisable(false);
     }
 
+    /**
+     * Helper method to enable toppings options and set the available toppings.
+     */
     private void enableToppings() {
         txt_toppings.setOpacity(MAX_OPACITY);
         txt_availabletoppings.setOpacity(MAX_OPACITY);
         txt_chosentoppings.setOpacity(MAX_OPACITY);
-        txt_availabletoppings.setText("Available Toppings");
+        txt_availabletoppings.setText("Available Toppings (+$1.69 each)");
         lv_availtoppings.setOpacity(MAX_OPACITY);
         lv_chosentoppings.setOpacity(MAX_OPACITY);
         lv_availtoppings.setDisable(false);
@@ -222,26 +289,38 @@ public class OrderController {
         bt_remove.setOpacity(MAX_OPACITY);
         bt_add.setDisable(false);
         bt_remove.setDisable(false);
+
+        lv_availtoppings.getItems().removeAll();
+        lv_availtoppings.setItems(FXCollections.observableArrayList(Topping.values()));
+
+        lv_chosentoppings.getItems().removeAll();
     }
 
+    /**
+     * Helper method to enable place order buttons;
+     */
     private void enablePlaceOrder() {
         bt_placeorder.setOpacity(MAX_OPACITY);
         bt_placeorder.setDisable(false);
     }
 
+    /**
+     * Helper method to show fixed toppings for specialty pizzas.
+     */
     private void showFixedToppings() {
         txt_toppings.setOpacity(MAX_OPACITY);
         txt_availabletoppings.setOpacity(MAX_OPACITY);
-        txt_availabletoppings.setText("Chosen Toppings (Fixed)");
-        lv_availtoppings.setOpacity(MIN_OPACITY);
-        lv_chosentoppings.setOpacity(MAX_OPACITY);
-        lv_availtoppings.setDisable(false);
-        lv_chosentoppings.setDisable(false);
-        txt_add.setOpacity(MAX_OPACITY);
-        txt_remove.setOpacity(MAX_OPACITY);
-        bt_add.setOpacity(MAX_OPACITY);
-        bt_remove.setOpacity(MAX_OPACITY);
-        bt_add.setDisable(false);
-        bt_remove.setDisable(false);
+        txt_availabletoppings.setText("Fixed Toppings");
+        txt_chosentoppings.setOpacity(MIN_OPACITY);
+        lv_availtoppings.setOpacity(MAX_OPACITY);
+        lv_chosentoppings.setOpacity(MIN_OPACITY);
+        lv_availtoppings.setDisable(true);
+        lv_chosentoppings.setDisable(true);
+        txt_add.setOpacity(MIN_OPACITY);
+        txt_remove.setOpacity(MIN_OPACITY);
+        bt_add.setOpacity(MIN_OPACITY);
+        bt_remove.setOpacity(MIN_OPACITY);
+        bt_add.setDisable(true);
+        bt_remove.setDisable(true);
     }
 }
