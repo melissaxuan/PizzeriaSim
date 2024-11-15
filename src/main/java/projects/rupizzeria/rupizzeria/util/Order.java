@@ -1,4 +1,6 @@
-package projects.rupizzeria.rupizzeria;
+package projects.rupizzeria.rupizzeria.util;
+
+import projects.rupizzeria.rupizzeria.factory.Pizza;
 
 import java.util.ArrayList;
 

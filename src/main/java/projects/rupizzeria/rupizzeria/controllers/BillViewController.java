@@ -1,4 +1,4 @@
-package projects.rupizzeria.rupizzeria;
+package projects.rupizzeria.rupizzeria.controllers;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.scene.control.ListView;
+import projects.rupizzeria.rupizzeria.MainController;
 
 
 public class BillViewController {

@@ -1,4 +1,4 @@
-package projects.rupizzeria.rupizzeria;
+package projects.rupizzeria.rupizzeria.util;
 
 public enum Topping {
     MUSHROOM(),

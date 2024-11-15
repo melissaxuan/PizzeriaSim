@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane prefHeight="547.0" prefWidth="614.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projects.rupizzeria.rupizzeria.OrderController">
+<AnchorPane prefHeight="547.0" prefWidth="614.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projects.rupizzeria.rupizzeria.controllers.OrderController">
    <children>
       <ImageView fx:id="iv_pizza" fitHeight="200.0" fitWidth="200.0" layoutX="390.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" />
       <GridPane prefHeight="541.0" prefWidth="614.0" vgap="10.0">

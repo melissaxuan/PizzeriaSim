@@ -1,4 +1,9 @@
-package projects.rupizzeria.rupizzeria;
+package projects.rupizzeria.rupizzeria.factory.impl;
+
+import projects.rupizzeria.rupizzeria.factory.Pizza;
+import projects.rupizzeria.rupizzeria.util.Crust;
+import projects.rupizzeria.rupizzeria.util.Size;
+import projects.rupizzeria.rupizzeria.util.Topping;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,29 +25,6 @@ public class Meatzza extends Pizza {
         super.setSize(Size.SMALL);
     }
 
-    /**
-     * Parameter constructor for Meatzaa
-     * @param pizzaStyle style of pizza 2 new york or 1 chicago
-     * @param size size of the pizza
-     */
-    public Meatzza(int pizzaStyle, String size)
-    {
-        super();
-        super.setToppings(new ArrayList<>(Arrays.asList(Topping.SAUSAGE, Topping.PEPPERONI, Topping.BEEF, Topping.HAM)));
-        if(pizzaStyle ==CHICAGO_STYLE)
-        {
-            super.setCrust(Crust.STUFFED);
-        }
-        else if(pizzaStyle ==NEWYORK_STYLE)
-        {
-            super.setCrust(Crust.HANDTOSSED);
-        }
-        else
-        {
-            super.setCrust(Crust.STUFFED);
-        }
-        this.sizeCheck(size);
-    }
     /**
      * Calculates price of Meatzza pizza.
      * @return price of Meatzza pizza.
