@@ -5,14 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import projects.rupizzeria.rupizzeria.controllers.BillViewController;
 
 import javax.swing.text.html.ImageView;
 import java.io.IOException;
@@ -50,7 +45,7 @@ public class MainController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("bill-view.fxml"));
             System.out.println("1");
-            Scene scene = new Scene(loader.load(), 400, 600);
+            Scene scene = new Scene(loader.load(), 600, 600);
             System.out.println("3");
             //view1.setScene(scene); //if we wnat to use the new window to draw the scene graph
            // view1.setTitle("view1");

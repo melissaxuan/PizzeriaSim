@@ -1,4 +1,8 @@
-package projects.rupizzeria.rupizzeria;
+package projects.rupizzeria.rupizzeria.factory;
+
+import projects.rupizzeria.rupizzeria.util.Crust;
+import projects.rupizzeria.rupizzeria.util.Size;
+import projects.rupizzeria.rupizzeria.util.Topping;
 
 import java.util.ArrayList;
 
@@ -6,8 +10,6 @@ public abstract class Pizza {
     private ArrayList<Topping> toppings;
     private Crust crust;
     private Size size;
-    static final int CHICAGO_STYLE = 1;
-    static final int NEWYORK_STYLE= 2;
 
     public Pizza() {
         toppings = new ArrayList<>();
@@ -36,23 +38,5 @@ public abstract class Pizza {
 
     public void setSize(Size size) {
         this.size = size;
-    }
-
-    public void sizeCheck(String size)
-    {
-        switch(size) {
-            case "Small":
-                this.setSize(Size.SMALL);
-                break;
-            case "Medium":
-                this.setSize(Size.MEDIUM);
-                break;
-            case "Large":
-                this.setSize(Size.LARGE);
-                break;
-            default:
-                this.setSize(Size.SMALL);
-                break;
-        }
     }
 }

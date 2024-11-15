@@ -1,7 +1,6 @@
-package projects.rupizzeria.rupizzeria;
+package projects.rupizzeria.rupizzeria.controllers;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -13,6 +12,14 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import projects.rupizzeria.rupizzeria.MainController;
+import projects.rupizzeria.rupizzeria.factory.ChicagoPizza;
+import projects.rupizzeria.rupizzeria.factory.NYPizza;
+import projects.rupizzeria.rupizzeria.factory.Pizza;
+import projects.rupizzeria.rupizzeria.factory.PizzaFactory;
+import projects.rupizzeria.rupizzeria.util.Crust;
+import projects.rupizzeria.rupizzeria.util.Size;
+import projects.rupizzeria.rupizzeria.util.Topping;
 
 import java.util.ArrayList;
 import java.util.Arrays;
