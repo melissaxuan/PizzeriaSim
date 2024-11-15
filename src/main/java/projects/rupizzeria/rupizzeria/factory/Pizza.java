@@ -39,4 +39,10 @@ public abstract class Pizza {
     public void setSize(Size size) {
         this.size = size;
     }
+
+    @Override
+    public String toString() {
+        return this.getSize().toString() + " " + Object.class + ": Toppings [" + this.toppings + "], "
+                + this.getCrust().toString() + " Crust";
+    }
 }
