@@ -28,9 +28,9 @@
                </ImageView>
             </graphic>
          </Button>
-         <Button fx:id="B_Order" contentDisplay="TOP" layoutX="221.0" layoutY="10.0" onAction="#onHelloButtonClick" text="Order">
+         <Button fx:id="B_Order" contentDisplay="TOP" layoutX="221.0" layoutY="10.0" onAction="#Order" text="Order">
             <graphic>
-               <ImageView fx:id="IV_OrderPlace2d1" fitHeight="130.0" fitWidth="195.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fx:id="IV_Order" fitHeight="130.0" fitWidth="195.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                      <Image url="@Images/spongeorderpic.JPG" />
                   </image>
@@ -40,9 +40,9 @@
                </ImageView>
             </graphic>
          </Button>
-        <Button fx:id="B_CurrentOrder" contentDisplay="TOP" onAction="#onHelloButtonClick" text="Current Order">
+        <Button fx:id="B_CurrentOrder" contentDisplay="TOP" onAction="#onCurrentOrder" text="Current Order">
             <graphic>
-               <ImageView fx:id="IV_OrderPlace2d" fitHeight="130.0" fitWidth="152.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fx:id="IV_CurrentOrder" fitHeight="130.0" fitWidth="152.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                      <Image url="@Images/cartSponge2.JPG" />
                   </image>

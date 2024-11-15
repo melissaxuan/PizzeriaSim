@@ -37,22 +37,4 @@ public abstract class Pizza {
     public void setSize(Size size) {
         this.size = size;
     }
-
-    public void sizeCheck(String size)
-    {
-        switch(size) {
-            case "Small":
-                this.setSize(Size.SMALL);
-                break;
-            case "Medium":
-                this.setSize(Size.MEDIUM);
-                break;
-            case "Large":
-                this.setSize(Size.LARGE);
-                break;
-            default:
-                this.setSize(Size.SMALL);
-                break;
-        }
-    }
 }

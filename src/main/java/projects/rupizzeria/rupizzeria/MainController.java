@@ -1,7 +1,9 @@
 package projects.rupizzeria.rupizzeria;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -12,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import javax.swing.text.html.ImageView;
@@ -22,20 +25,16 @@ public class MainController {
     private Label welcomeText;
 
     @FXML
-    private ImageView IV_OrderPLaced;
-
-    @FXML
     private Button B_OrderPlaced;
     private Stage primaryStage; //the reference of the main window.
-    private Scene primaryScene; //the ref. of the scene set to the primaryStage
+    private Scene primaryScene;  //the ref. of the scene set to the primaryStage
+    private Order currentOrder;
+
     public void setPrimaryStage(Stage stage, Scene scene) {
         primaryStage = stage;
         primaryScene = scene;
     }
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
+
 
     public void initialize(){
 
@@ -46,19 +45,16 @@ public class MainController {
     public void onOrdersPlaced()
     {
         Stage view1 = new Stage();
-
+        BorderPane root;
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("bill-view.fxml"));
-            System.out.println("1");
+            root = (BorderPane) loader.load();
             Scene scene = new Scene(loader.load(), 400, 600);
-            System.out.println("3");
-            //view1.setScene(scene); //if we wnat to use the new window to draw the scene graph
-           // view1.setTitle("view1");
-            //view1.show();
+            view1.setScene(scene); //if we wnat to use the new window to draw the scene graph
+            view1.setTitle("view1");
+            view1.show();
             primaryStage.setScene(scene);
-            System.out.println("4");
             BillViewController secondViewController = loader.getController();
-            System.out.println("5");
             /*
               The statement below is to pass the references of the MainController objects
               to the SecondViewController object so the SecondViewController can call the
@@ -73,4 +69,58 @@ public class MainController {
             alert.showAndWait();
         }
     }
+
+    public void onCurrentOrder(ActionEvent actionEvent) {Stage view1 = new Stage();
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("bill-view.fxml"));
+            Scene scene = new Scene(loader.load(), 400, 600);
+            view1.setScene(scene); //if we wnat to use the new window to draw the scene graph
+            view1.setTitle("view1");
+            view1.show();
+            primaryStage.setScene(scene);
+            BillViewController secondViewController = loader.getController();
+            /*
+              The statement below is to pass the references of the MainController objects
+              to the SecondViewController object so the SecondViewController can call the
+              public methods in the MainController or to navigate back to the main view.
+             */
+            secondViewController.setMainController(this, view1, primaryStage, primaryScene);
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("Loading second-view.fxml.");
+            alert.setContentText("Couldn't load second-view.fxml.");
+            alert.showAndWait();
+        }
+    }
+
+    public void Order() {
+        Stage popupStage = new Stage(); // Create a new Stage for the popup
+
+        try {
+            // Load the order-view.fxml for the popup
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("order-view.fxml"));
+            Scene popupScene = new Scene(loader.load(), 400, 600);
+
+            // Set the scene for the popup stage
+            popupStage.setScene(popupScene);
+            popupStage.setTitle("Order View");
+            popupStage.initModality(Modality.APPLICATION_MODAL); // Make it modal (blocks interaction with other windows)
+            popupStage.show(); // Show the popup window
+
+            // Pass references to the OrderController
+            OrderController thirdViewController = loader.getController();
+            thirdViewController.setMainController(this, popupStage, primaryStage, primaryScene);
+        } catch (IOException e) {
+            // Handle exceptions with an alert
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("Loading order-view.fxml.");
+            alert.setContentText("Couldn't load order-view.fxml.");
+            alert.showAndWait();
+        }
+    }
+
 }

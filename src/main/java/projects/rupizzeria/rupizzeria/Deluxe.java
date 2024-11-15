@@ -12,34 +12,10 @@ public class Deluxe extends Pizza{
      */
     public Deluxe() {
         super();
-        super.setToppings(new ArrayList<>(Arrays.asList(Topping.SAUSAGE, Topping.PEPPERONI, Topping.GREENPEPPER, Topping.ONION,Topping.MUSHROOM)));
+        super.setToppings(new ArrayList<>(Arrays.asList(Topping.SAUSAGE, Topping.PEPPERONI, Topping.GREEN_PEPPER, Topping.ONION,Topping.MUSHROOM)));
         super.setCrust(Crust.DEEPDISH);
         super.setSize(Size.SMALL);
     }
-    /**
-     * Parameter BBQChicken constructor.
-     * @param pizzaStyle style of pizza 2 new york or 1 chicago
-     * @param size size of the pizza
-     */
-    public Deluxe(int pizzaStyle, String size)
-    {
-        super();
-        super.setToppings(new ArrayList<>(Arrays.asList(Topping.SAUSAGE, Topping.PEPPERONI, Topping.GREENPEPPER, Topping.ONION,Topping.MUSHROOM)));
-        if(pizzaStyle ==CHICAGO_STYLE)
-        {
-            super.setCrust(Crust.DEEPDISH);
-        }
-        else if(pizzaStyle ==NEWYORK_STYLE)
-        {
-            super.setCrust(Crust.BROOKLYN);
-        }
-        else
-        {
-            super.setCrust(Crust.DEEPDISH);
-        }
-        this.sizeCheck(size);
-    }
-
     /**
      * Calculates price of BBQChicken pizza.
      * @return price of BBQChicken pizza.

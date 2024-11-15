@@ -12,34 +12,10 @@ public class BBQChicken extends Pizza {
      */
     public BBQChicken() {
         super();
-        super.setToppings(new ArrayList<>(Arrays.asList(Topping.BBQ_CHICKEN, Topping.GREENPEPPER, Topping.PROVOLONE, Topping.CHEDDER)));
+        super.setToppings(new ArrayList<>(Arrays.asList(Topping.BBQ_CHICKEN, Topping.GREEN_PEPPER, Topping.PROVOLONE, Topping.CHEDDAR)));
         super.setCrust(Crust.PAN);
         super.setSize(Size.SMALL);
     }
-    /**
-     * Parameter BBQChicken constructor.
-     * @param pizzaStyle style of pizza 2 new york or 1 chicago
-     * @param size size of the pizza
-     */
-    public BBQChicken(int pizzaStyle, String size)
-    {
-        super();
-        super.setToppings(new ArrayList<>(Arrays.asList(Topping.BBQ_CHICKEN, Topping.GREENPEPPER, Topping.PROVOLONE, Topping.CHEDDER)));
-        if(pizzaStyle ==CHICAGO_STYLE)
-        {
-            super.setCrust(Crust.PAN);
-        }
-        else if(pizzaStyle ==NEWYORK_STYLE)
-        {
-            super.setCrust(Crust.THIN);
-        }
-        else
-        {
-            super.setCrust(Crust.PAN);
-        }
-        this.sizeCheck(size);
-    }
-
     /**
      * Calculates price of BBQChicken pizza.
      * @return price of BBQChicken pizza.
