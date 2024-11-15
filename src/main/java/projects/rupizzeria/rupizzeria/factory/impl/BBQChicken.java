@@ -1,4 +1,9 @@
-package projects.rupizzeria.rupizzeria;
+package projects.rupizzeria.rupizzeria.factory.impl;
+
+import projects.rupizzeria.rupizzeria.factory.Pizza;
+import projects.rupizzeria.rupizzeria.util.Crust;
+import projects.rupizzeria.rupizzeria.util.Size;
+import projects.rupizzeria.rupizzeria.util.Topping;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,6 +21,7 @@ public class BBQChicken extends Pizza {
         super.setCrust(Crust.PAN);
         super.setSize(Size.SMALL);
     }
+
     /**
      * Calculates price of BBQChicken pizza.
      * @return price of BBQChicken pizza.

@@ -1,4 +1,8 @@
-package projects.rupizzeria.rupizzeria;
+package projects.rupizzeria.rupizzeria.factory;
+
+import projects.rupizzeria.rupizzeria.util.Crust;
+import projects.rupizzeria.rupizzeria.util.Size;
+import projects.rupizzeria.rupizzeria.util.Topping;
 
 import java.util.ArrayList;
 
@@ -6,8 +10,6 @@ public abstract class Pizza {
     private ArrayList<Topping> toppings;
     private Crust crust;
     private Size size;
-    static final int CHICAGO_STYLE = 1;
-    static final int NEWYORK_STYLE= 2;
 
     public Pizza() {
         toppings = new ArrayList<>();

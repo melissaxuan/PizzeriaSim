@@ -1,4 +1,10 @@
-package projects.rupizzeria.rupizzeria;
+
+package projects.rupizzeria.rupizzeria.factory.impl;
+
+import projects.rupizzeria.rupizzeria.factory.Pizza;
+import projects.rupizzeria.rupizzeria.util.Crust;
+import projects.rupizzeria.rupizzeria.util.Size;
+import projects.rupizzeria.rupizzeria.util.Topping;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,6 +25,7 @@ public class Meatzza extends Pizza {
         super.setCrust(Crust.STUFFED);
         super.setSize(Size.SMALL);
     }
+
     /**
      * Calculates price of Meatzza pizza.
      * @return price of Meatzza pizza.

@@ -1,9 +1,14 @@
-package projects.rupizzeria.rupizzeria;
+package projects.rupizzeria.rupizzeria.factory.impl;
+
+import projects.rupizzeria.rupizzeria.factory.Pizza;
+import projects.rupizzeria.rupizzeria.util.Crust;
+import projects.rupizzeria.rupizzeria.util.Size;
+import projects.rupizzeria.rupizzeria.util.Topping;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Deluxe extends Pizza{
+public class Deluxe extends Pizza {
     private final double SMALL_PRICE = 16.99;
     private final double MED_PRICE = 18.99;
     private final double LARGE_PRICE = 20.99;
@@ -16,6 +21,7 @@ public class Deluxe extends Pizza{
         super.setCrust(Crust.DEEPDISH);
         super.setSize(Size.SMALL);
     }
+
     /**
      * Calculates price of BBQChicken pizza.
      * @return price of BBQChicken pizza.

@@ -1,4 +1,4 @@
-package projects.rupizzeria.rupizzeria;
+package projects.rupizzeria.rupizzeria.factory;
 
 public interface PizzaFactory {
     Pizza createDeluxe();
