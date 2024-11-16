@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import projects.rupizzeria.rupizzeria.pizza.OrderManager;
 import projects.rupizzeria.rupizzeria.util.Order;
 
 import java.io.IOException;
@@ -27,7 +28,7 @@ public class MainController {
 
     private Stage primaryStage; //the reference of the main window.
     private Scene primaryScene;  //the ref. of the scene set to the primaryStage
-    private Order currentOrder;
+    private OrderManager om;
     private ArrayList<Order> orderList;
     private int counter;
 
@@ -37,9 +38,8 @@ public class MainController {
     public MainController()
     {
         this.counter = FIRST_ORDER_ID;
-        this.currentOrder = new Order();
         this.orderList = new ArrayList<Order>();
-        this.orderList.add(this.currentOrder);
+        this.om = new OrderManager();
     }
 
     /**
@@ -145,13 +145,16 @@ public class MainController {
     public ArrayList<Order> getOrder() {return orderList;}
 
     /**
-     * Getter method for the current order.
-     */
-    public Order getCurrentOrder(){return this.currentOrder;}
-
-    /**
      * Getter method for the counter.
      * @return the counter
      */
-    public int getCounter(){return counter;}
+    public int getCounter(){return this.counter;}
+
+    /**
+     * Setter method for the counter.
+     * @param index index to set counter to
+     */
+    public void setCounter(int index) {
+        this.counter = index;
+    }
 }

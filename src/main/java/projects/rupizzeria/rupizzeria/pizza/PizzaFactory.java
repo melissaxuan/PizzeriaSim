@@ -1,4 +1,4 @@
-package projects.rupizzeria.rupizzeria.factory;
+package projects.rupizzeria.rupizzeria.pizza;
 
 /**
  * Interface for the types of pizza made in the factory.

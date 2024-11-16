@@ -1,6 +1,6 @@
-package projects.rupizzeria.rupizzeria.factory.impl;
+package projects.rupizzeria.rupizzeria.pizza.impl;
 
-import projects.rupizzeria.rupizzeria.factory.Pizza;
+import projects.rupizzeria.rupizzeria.pizza.Pizza;
 import projects.rupizzeria.rupizzeria.util.Crust;
 import projects.rupizzeria.rupizzeria.util.Size;
 import projects.rupizzeria.rupizzeria.util.Topping;
