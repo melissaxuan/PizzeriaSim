@@ -111,7 +111,13 @@ public class OrderController {
         lv_availtoppings.setItems(FXCollections.observableArrayList(Topping.values()));
         disableAll();
     }
-
+    /**
+     * sets the main controller for navigation purposes
+     * @param controller controller of the mainController
+     * @param stage stage of the mainController
+     * @param primaryStage primaryStage of the mainController
+     * @param primaryScene primaryScene of the mainController
+     */
     public void setMainController(MainController controller, Stage stage, Stage primaryStage, Scene primaryScene) {
         mainController = controller;
         this.stage = stage;
