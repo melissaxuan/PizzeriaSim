@@ -8,7 +8,16 @@ import projects.rupizzeria.rupizzeria.controllers.MainController;
 
 import java.io.IOException;
 
+/**
+ * Class to load the RUPizzeria GUI
+ * @author Melissa Xuan
+ */
 public class RUPizzeriaApplication extends Application {
+    /**
+     * Loads the first scene in the GUI
+     * @param stage
+     * @throws IOException
+     */
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(RUPizzeriaApplication.class.getResource("RUPizzeria.fxml"));
@@ -20,6 +29,10 @@ public class RUPizzeriaApplication extends Application {
         stage.show();
     }
 
+    /**
+     * main method to launch the GUI
+     * @param args
+     */
     public static void main(String[] args) {
         launch();
     }

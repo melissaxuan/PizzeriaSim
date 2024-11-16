@@ -13,29 +13,43 @@ import projects.rupizzeria.rupizzeria.util.Order;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Main controller of the RUPizzeria program
+ * @author Michael Ehresman
+ */
 public class MainController {
     @FXML
     private Label welcomeText;
 
     @FXML
     private Button B_OrderPlaced;
+
     private Stage primaryStage; //the reference of the main window.
     private Scene primaryScene;  //the ref. of the scene set to the primaryStage
     private Order currentOrder;
-
     private ArrayList<Order> orderList;
 
+    /**
+     * Default constructor for the MainController class
+     */
+    public MainController()
+    {
+        orderList = new ArrayList<Order>();
+    }
+
+    /**
+     * Sets the primary stage and scene for navigation
+     * @param stage to be set as the primary stage
+     * @param scene to be set as the primary scene
+     */
     public void setPrimaryStage(Stage stage, Scene scene) {
         primaryStage = stage;
         primaryScene = scene;
     }
 
-
-    public void initialize(){
-
-    }
-
-
+    /**
+     * Navigates to the onOrdersPlaced scene bill-view.fxml when the image view is clicked
+     */
     @FXML
     public void onOrdersPlaced() {
         Stage popupStage = new Stage();
@@ -61,7 +75,9 @@ public class MainController {
             alert.showAndWait();
         }
     }
-
+    /**
+     * Navigates to the oncurrentOrder scene current-order-view.fxml when the image view is clicked
+     */
     @FXML
     public void onCurrentOrder() {
         Stage popupStage = new Stage(); // Create a new Stage for the popup
@@ -86,8 +102,10 @@ public class MainController {
             alert.showAndWait();
         }
     }
-
-    @FXML
+    /**
+     * Navigates to the Order scene order-view.fxml when the image view is clicked
+     */
+@FXML
     public void Order() {
         Stage popupStage = new Stage(); // Create a new Stage for the popup
 
@@ -115,7 +133,13 @@ public class MainController {
         }
     }
 
-    public ArrayList<Order> getOrder() {
+    /**
+     * getter method for the orderList arraylist
+     * @return the current orderList
+     */
+    public ArrayList<Order> getOrder()
+    {
         return this.orderList;
     }
+
 }
