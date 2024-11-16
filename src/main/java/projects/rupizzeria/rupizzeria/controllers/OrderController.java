@@ -8,7 +8,6 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import projects.rupizzeria.rupizzeria.MainController;
 import projects.rupizzeria.rupizzeria.factory.ChicagoPizza;
 import projects.rupizzeria.rupizzeria.factory.NYPizza;
 import projects.rupizzeria.rupizzeria.factory.Pizza;
@@ -156,6 +155,7 @@ public class OrderController {
         else {
             pizza.setSize(Size.LARGE);
         }
+
 
     }
 
@@ -407,4 +407,5 @@ public class OrderController {
                 break;
         }
     }
+
 }

@@ -6,7 +6,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.scene.control.ListView;
-import projects.rupizzeria.rupizzeria.MainController;
 
 
 public class BillViewController {
