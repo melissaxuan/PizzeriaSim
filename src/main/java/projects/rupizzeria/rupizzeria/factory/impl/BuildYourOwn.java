@@ -7,12 +7,18 @@ import projects.rupizzeria.rupizzeria.util.Topping;
 
 import java.util.ArrayList;
 
+/**
+ * Handles orders for Build Your Own Pizza.
+ *
+ * @author Melissa Xuan
+ */
 public class BuildYourOwn extends Pizza {
     private final double SMALL_PRICE = 8.99;
     private final double MED_PRICE = 10.99;
     private final double LARGE_PRICE = 12.99;
     private final double TOPPING_PRICE = 1.69;
     private final int MAX_TOPPINGS = 7;
+
     /**
      * Default constructor for BuildYourOwn pizza.
      */

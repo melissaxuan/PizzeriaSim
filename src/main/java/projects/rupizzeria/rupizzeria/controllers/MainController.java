@@ -1,4 +1,4 @@
-package projects.rupizzeria.rupizzeria;
+package projects.rupizzeria.rupizzeria.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,9 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import projects.rupizzeria.rupizzeria.controllers.BillViewController;
-import projects.rupizzeria.rupizzeria.controllers.OrderController;
-import projects.rupizzeria.rupizzeria.controllers.CurrentOrderController;
 import projects.rupizzeria.rupizzeria.util.Order;
 
 import java.io.IOException;
@@ -59,7 +56,7 @@ public class MainController {
         Stage popupStage = new Stage();
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("bill-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/projects/rupizzeria/rupizzeria/bill-view.fxml"));
             Scene popupScene = new Scene(loader.load(), 400, 600);
             popupStage.setScene(popupScene);
             popupStage.setTitle("Bill View");
@@ -87,13 +84,11 @@ public class MainController {
         Stage popupStage = new Stage(); // Create a new Stage for the popup
 
         try {
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("current-order-view.fxml"));
-            Scene popupScene = new Scene(loader.load(), 400, 600);
-
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/projects/rupizzeria/rupizzeria/current-order-view.fxml"));
+            Scene popupScene = new Scene(loader.load(), 600, 400);
 
             popupStage.setScene(popupScene);
-            popupStage.setTitle("Current Order View");
+            popupStage.setTitle("Current Order");
             popupStage.initModality(Modality.APPLICATION_MODAL); // Make it modal (blocks interaction with other windows)
             popupStage.show(); // Show the popup window
 
@@ -117,12 +112,12 @@ public class MainController {
 
         try {
             // Load the order-view.fxml for the popup
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("order-view.fxml"));
-            Scene popupScene = new Scene(loader.load(), 400, 600);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/projects/rupizzeria/rupizzeria/order-view.fxml"));
+            Scene popupScene = new Scene(loader.load(), 614, 547);
 
             // Set the scene for the popup stage
             popupStage.setScene(popupScene);
-            popupStage.setTitle("Order View");
+            popupStage.setTitle("Order A Pizza");
             popupStage.initModality(Modality.APPLICATION_MODAL); // Make it modal (blocks interaction with other windows)
             popupStage.show(); // Show the popup window
 
@@ -140,13 +135,17 @@ public class MainController {
     }
 
     /**
-     * getter method for the orderList arraylist.
+     * Getter method for the orderList arraylist.
      * @return the orderList
      */
     public ArrayList<Order> getOrder() {return orderList;}
 
     /**
-     * getter method for the counter.
+     * Getter method for the current order.
+     */
+    public Order getCurrentOrder(){return this.currentOrder;}
+    /**
+     * Getter method for the counter.
      * @return the counter
      */
     public int getCounter(){return counter;}
