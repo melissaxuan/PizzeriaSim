@@ -40,7 +40,7 @@ public class BuildYourOwn extends Pizza {
 
     /**
      * Calculates the price of the BuildYourOwn Pizza.
-     * @return price of the BuildYourOwn Pizza.
+     * @return price of the BuildYourOwn Pizza
      */
     public double price() {
         double toppingsPrice = super.getToppings().size() * TOPPING_PRICE;

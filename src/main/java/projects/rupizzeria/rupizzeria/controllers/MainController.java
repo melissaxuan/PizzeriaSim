@@ -18,6 +18,7 @@ import java.util.ArrayList;
  * @author Michael Ehresman
  */
 public class MainController {
+    private final int FIRST_ORDER_ID = 1;
     @FXML
     private Label welcomeText;
 
@@ -28,14 +29,17 @@ public class MainController {
     private Scene primaryScene;  //the ref. of the scene set to the primaryStage
     private Order currentOrder;
     private ArrayList<Order> orderList;
-    int counter;
+    private int counter;
+
     /**
      * Default constructor for the MainController class.
      */
     public MainController()
     {
-        counter = 0;
-        orderList = new ArrayList<Order>();
+        this.counter = FIRST_ORDER_ID;
+        this.currentOrder = new Order();
+        this.orderList = new ArrayList<Order>();
+        this.orderList.add(this.currentOrder);
     }
 
     /**
@@ -144,6 +148,7 @@ public class MainController {
      * Getter method for the current order.
      */
     public Order getCurrentOrder(){return this.currentOrder;}
+
     /**
      * Getter method for the counter.
      * @return the counter
