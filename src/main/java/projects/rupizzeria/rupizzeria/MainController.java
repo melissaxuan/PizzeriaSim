@@ -31,12 +31,13 @@ public class MainController {
     private Scene primaryScene;  //the ref. of the scene set to the primaryStage
     private Order currentOrder;
     private ArrayList<Order> orderList;
-
+    int counter;
     /**
      * Default constructor for the MainController class
      */
     public MainController()
     {
+        counter = 0;
         orderList = new ArrayList<Order>();
     }
 
@@ -140,11 +141,13 @@ public class MainController {
 
     /**
      * getter method for the orderList arraylist
-     * @return the current orderList
+     * @return the orderList
      */
-    public ArrayList<Order> getOrder()
-    {
-        return this.orderList;
-    }
+    public ArrayList<Order> getOrder() {return orderList;}
 
+    /**
+     * getter method for the counter
+     * @return the counter
+     */
+    public int getCounter(){return counter;}
 }
