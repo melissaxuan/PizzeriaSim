@@ -73,5 +73,11 @@ public class CurrentOrderController {
         }
     }
 
-
+    /**
+     * Returns current Order object.
+     * @return current Order
+     */
+    public Order getCurrOrder() {
+        return currOrder;
+    }
 }

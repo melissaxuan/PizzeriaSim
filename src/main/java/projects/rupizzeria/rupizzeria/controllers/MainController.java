@@ -23,7 +23,7 @@ public class MainController {
     private Scene primaryScene;  //the ref. of the scene set to the primaryStage
     private Order currentOrder;
 
-    private ArrayList<Order> order;
+    private ArrayList<Order> orderList;
 
     public void setPrimaryStage(Stage stage, Scene scene) {
         primaryStage = stage;
@@ -116,6 +116,6 @@ public class MainController {
     }
 
     public ArrayList<Order> getOrder() {
-        return this.order;
+        return this.orderList;
     }
 }
