@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Main controller of the RUPizzeria program
+ * Main controller of the RUPizzeria program.
  * @author Michael Ehresman
  */
 public class MainController {
@@ -33,7 +33,7 @@ public class MainController {
     private ArrayList<Order> orderList;
     int counter;
     /**
-     * Default constructor for the MainController class
+     * Default constructor for the MainController class.
      */
     public MainController()
     {
@@ -42,7 +42,7 @@ public class MainController {
     }
 
     /**
-     * Sets the primary stage and scene for navigation
+     * Sets the primary stage and scene for navigation.
      * @param stage to be set as the primary stage
      * @param scene to be set as the primary scene
      */
@@ -80,7 +80,7 @@ public class MainController {
         }
     }
     /**
-     * Navigates to the oncurrentOrder scene current-order-view.fxml when the image view is clicked
+     * Navigates to the oncurrentOrder scene current-order-view.fxml when the image view is clicked.
      */
     @FXML
     public void onCurrentOrder() {
@@ -109,7 +109,7 @@ public class MainController {
         }
     }
     /**
-     * Navigates to the Order scene order-view.fxml when the image view is clicked
+     * Navigates to the Order scene order-view.fxml when the image view is clicked.
      */
 @FXML
     public void Order() {
@@ -140,13 +140,13 @@ public class MainController {
     }
 
     /**
-     * getter method for the orderList arraylist
+     * getter method for the orderList arraylist.
      * @return the orderList
      */
     public ArrayList<Order> getOrder() {return orderList;}
 
     /**
-     * getter method for the counter
+     * getter method for the counter.
      * @return the counter
      */
     public int getCounter(){return counter;}

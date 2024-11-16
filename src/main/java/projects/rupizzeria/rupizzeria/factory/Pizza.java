@@ -7,7 +7,7 @@ import projects.rupizzeria.rupizzeria.util.Topping;
 import java.util.ArrayList;
 
 /**
- * Describes the pizza type
+ * Describes the pizza type.
  * @author Melissa Xuan
  */
 public abstract class Pizza {

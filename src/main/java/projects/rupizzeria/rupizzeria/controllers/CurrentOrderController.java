@@ -10,7 +10,7 @@ public class CurrentOrderController {
     private Stage primaryStage;
     private ObservableList<String> colorList, fruitList, peopleList;
     /**
-     * sets the main controller for navigation purposes
+     * sets the main controller for navigation purposes.
      * @param controller controller of the mainController
      * @param stage stage of the mainController
      * @param primaryStage primaryStage of the mainController
