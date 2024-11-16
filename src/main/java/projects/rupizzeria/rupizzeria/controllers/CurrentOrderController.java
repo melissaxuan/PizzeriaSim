@@ -115,10 +115,10 @@ public class CurrentOrderController {
      * Removes Pizza from list of Pizzas in Order.
      * @param event action event
      */
-    @FXML
-    void removePizza(ActionEvent event) {
-        this.mainController.getCurrentOrder().removePizza(this.lv_pizzas.getSelectionModel().getSelectedIndex());
-    }
+//    @FXML
+//    void removePizza(ActionEvent event) {
+//        this.mainController.getCurrentOrder().removePizza(this.lv_pizzas.getSelectionModel().getSelectedIndex());
+//    }
 
     /**
      * Places Order and increments Counter.
@@ -130,12 +130,12 @@ public class CurrentOrderController {
         this.mainController.setCounter(this.mainController.getCounter() + COUNT_INCR);
     }
 
-    @FXML
-    void removeOrder(ActionEvent event) {
-        this.mainController.getOrder().removeIf(o -> o.getNumber() == this.currOrder.getNumber());
-        this.mainController.setCurrent(new Order(this.mainController.getCounter() + COUNT_INCR));
-        this.mainController.setCounter(this.mainController.getCounter() + COUNT_INCR);
-    }
+//    @FXML
+//    void removeOrder(ActionEvent event) {
+//        this.mainController.getOrder().removeIf(o -> o.getNumber() == this.currOrder.getNumber());
+//        this.mainController.setCurrent(new Order(this.mainController.getCounter() + COUNT_INCR));
+//        this.mainController.setCounter(this.mainController.getCounter() + COUNT_INCR);
+//    }
 
     /**
      * Returns current Order object.

@@ -1,9 +1,9 @@
-package projects.rupizzeria.rupizzeria.factory;
+package projects.rupizzeria.rupizzeria.pizza;
 
-import projects.rupizzeria.rupizzeria.factory.impl.BBQChicken;
-import projects.rupizzeria.rupizzeria.factory.impl.BuildYourOwn;
-import projects.rupizzeria.rupizzeria.factory.impl.Deluxe;
-import projects.rupizzeria.rupizzeria.factory.impl.Meatzza;
+import projects.rupizzeria.rupizzeria.pizza.impl.BBQChicken;
+import projects.rupizzeria.rupizzeria.pizza.impl.BuildYourOwn;
+import projects.rupizzeria.rupizzeria.pizza.impl.Deluxe;
+import projects.rupizzeria.rupizzeria.pizza.impl.Meatzza;
 
 /**
  * Handles orders for New York-style pizza.
