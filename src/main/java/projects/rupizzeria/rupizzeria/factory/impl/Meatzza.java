@@ -10,12 +10,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * Handles Meatzza details.
+ * Handles orders for Meatzza.
+ *
+ * @author Melissa Xuan
  */
 public class Meatzza extends Pizza {
     private final double SMALL_PRICE = 17.99;
     private final double MED_PRICE = 19.99;
     private final double LARGE_PRICE = 21.99;
+
     /**
      * Default Meatzza constructor.
      */

@@ -4,35 +4,40 @@ import projects.rupizzeria.rupizzeria.factory.impl.BBQChicken;
 import projects.rupizzeria.rupizzeria.factory.impl.BuildYourOwn;
 import projects.rupizzeria.rupizzeria.factory.impl.Deluxe;
 import projects.rupizzeria.rupizzeria.factory.impl.Meatzza;
+
 /**
- * Class for the NewYork pizza choice
- * @author Michael Ehresman
+ * Handles orders for New York-style pizza.
+ *
+ * @author Melissa Xuan
  */
 public class NYPizza implements PizzaFactory {
     /**
-     * Method to createDeluxe pizzas
-     * @return new deluxe pizza
+     * Creates New York-style Deluxe pizza.
+     * @return New York-style Deluxe pizza.
      */
     public Pizza createDeluxe() {
         return new Deluxe();
     }
+
     /**
-     * Method to createMeatzza pizzas
-     * @return new Meatzza pizza
+     * Creates New York-style Meatzza pizza.
+     * @return New York-style Meatzza.
      */
     public Pizza createMeatzza() {
         return new Meatzza();
     }
+
     /**
-     * Method to create BBQChicken pizzas
-     * @return new BBQChicken pizza
+     * Creates New York-style BBQ Chicken pizza.
+     * @return New York-style BBQ Chicken pizza.
      */
     public Pizza createBBQChicken() {
         return new BBQChicken();
     }
+
     /**
-     * Method to create your own pizzas
-     * @return new self created pizza
+     * Creates New York-style Build Your Own pizza.
+     * @return New York-style Build Your Own pizza.
      */
     public Pizza createBuildYourOwn() {
         return new BuildYourOwn();

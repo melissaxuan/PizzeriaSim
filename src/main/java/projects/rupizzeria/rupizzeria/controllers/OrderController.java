@@ -4,15 +4,10 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import projects.rupizzeria.rupizzeria.MainController;
 import projects.rupizzeria.rupizzeria.factory.ChicagoPizza;
 import projects.rupizzeria.rupizzeria.factory.NYPizza;
 import projects.rupizzeria.rupizzeria.factory.Pizza;
@@ -132,6 +127,13 @@ public class OrderController {
             lv_chosentoppings.getItems().add(lv_availtoppings.getSelectionModel().getSelectedItem());
             lv_availtoppings.getItems().remove(lv_availtoppings.getSelectionModel().getSelectedIndex());
         }
+        else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Maximum Toppings");
+            alert.setHeaderText(null);
+            alert.setContentText("There can only be a maximum of seven (7) toppings on a Build Your Own Pizza.");
+            alert.showAndWait();
+        }
     }
 
     @FXML
@@ -159,6 +161,7 @@ public class OrderController {
         else {
             pizza.setSize(Size.LARGE);
         }
+
 
     }
 
