@@ -24,7 +24,7 @@ public class BBQChicken extends Pizza {
 
     /**
      * Calculates price of BBQChicken pizza.
-     * @return price of BBQChicken pizza.
+     * @return price of BBQChicken pizza
      */
     public double price() {
         switch(super.getSize()) {
