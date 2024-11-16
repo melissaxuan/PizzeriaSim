@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import javafx.scene.control.ListView;
 
 /**
- * Class to display the total bill of all the orders
+ * Class to display the total bill of all the orders.
  * @author Michael Ehresman
  */
 public class BillViewController {
@@ -29,7 +29,7 @@ public class BillViewController {
     private ObservableList<String> colorList, fruitList, peopleList;
 
     /**
-     * sets the main controller for navigation purposes
+     * sets the main controller for navigation purposes.
      * @param controller controller of the mainController
      * @param stage stage of the mainController
      * @param primaryStage primaryStage of the mainController

@@ -107,7 +107,7 @@ public class OrderController {
         disableAll();
     }
     /**
-     * sets the main controller for navigation purposes
+     * sets the main controller for navigation purposes.
      * @param controller controller of the mainController
      * @param stage stage of the mainController
      * @param primaryStage primaryStage of the mainController

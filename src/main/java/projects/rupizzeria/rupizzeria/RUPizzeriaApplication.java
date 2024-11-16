@@ -9,12 +9,12 @@ import projects.rupizzeria.rupizzeria.controllers.MainController;
 import java.io.IOException;
 
 /**
- * Class to load the RUPizzeria GUI
+ * Class to load the RUPizzeria GUI.
  * @author Melissa Xuan
  */
 public class RUPizzeriaApplication extends Application {
     /**
-     * Loads the first scene in the GUI
+     * Loads the first scene in the GUI.
      * @param stage
      * @throws IOException
      */
@@ -30,7 +30,7 @@ public class RUPizzeriaApplication extends Application {
     }
 
     /**
-     * main method to launch the GUI
+     * Main method to launch the GUI.
      * @param args
      */
     public static void main(String[] args) {
