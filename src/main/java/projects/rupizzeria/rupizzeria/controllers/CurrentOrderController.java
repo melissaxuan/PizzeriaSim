@@ -1,5 +1,11 @@
 package projects.rupizzeria.rupizzeria.controllers;
 import javafx.collections.ObservableList;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.text.Text;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -14,12 +20,40 @@ import java.io.IOException;
  * Controls current order view.
  */
 public class CurrentOrderController {
+    @FXML
+    private Button bt_addpizza;
+
+    @FXML
+    private Button bt_placeorder;
+
+    @FXML
+    private Button bt_removeorder;
+
+    @FXML
+    private Button bt_removepizza;
+
+    @FXML
+    private ListView<?> lv_pizzas;
+
+    @FXML
+    private Text txt_currentorderheader;
+
+    @FXML
+    private Text txt_orderno;
+
+    @FXML
+    private Text txt_ordertotal;
+
+    @FXML
+    private Text txt_subtotal;
+
+    @FXML
+    private Text txt_tax;
+
     private MainController mainController;
     private Stage stage;
     private Scene primaryScene;
     private Stage primaryStage;
-    private ObservableList<String> colorList, fruitList, peopleList;
-
     private Order currOrder;
 //    private ObservableList<String> colorList, fruitList, peopleList;
 
@@ -27,18 +61,18 @@ public class CurrentOrderController {
      * Default constructor for CurrentOrderController.
      */
     public CurrentOrderController() {
-        currOrder = new Order();
+        this.currOrder = new Order();
     }
 
-        /**
-         * sets the main controller for navigation purposes
-         * @param controller controller of the mainController
-         * @param stage stage of the mainController
-         * @param primaryStage primaryStage of the mainController
-         * @param primaryScene primaryScene of the mainController
-         */
+    /**
+     * sets the main controller for navigation purposes
+     * @param controller controller of the mainController
+     * @param stage stage of the mainController
+     * @param primaryStage primaryStage of the mainController
+     * @param primaryScene primaryScene of the mainController
+     */
     public void setMainController(MainController controller, Stage stage, Stage primaryStage, Scene primaryScene) {
-        mainController = controller;
+        this.mainController = controller;
         this.stage = stage;
         this.primaryStage = primaryStage;
         this.primaryScene = primaryScene;
@@ -46,9 +80,10 @@ public class CurrentOrderController {
 
     /**
      * Redirects user to order view to add a new pizza to order.
+     * @param event action event
      */
     @FXML
-    public void addPizza() {
+    void addPizza(ActionEvent event) {
         Stage popupStage = new Stage(); // Create a new Stage for the popup
 
         try {
@@ -74,6 +109,26 @@ public class CurrentOrderController {
             alert.showAndWait();
         }
     }
+
+    /**
+     * Removes Pizza from list of Pizzas in Order.
+     * @param event action event
+     */
+    @FXML
+    void removePizza(ActionEvent event) {
+        mainController.getCurrentOrder().removePizza(lv_pizzas.getSelectionModel().getSelectedIndex());
+    }
+
+    @FXML
+    void placeOrder(ActionEvent event) {
+
+    }
+
+    @FXML
+    void removeOrder(ActionEvent event) {
+
+    }
+
 
     /**
      * Returns current Order object.
