@@ -1,7 +1,7 @@
 package projects.rupizzeria.rupizzeria.util;
 
 /**
- * Enum class for the pizza crusts
+ * Enum class for the pizza crusts.
  * @author Michael Ehresman
  */
 public enum Crust {

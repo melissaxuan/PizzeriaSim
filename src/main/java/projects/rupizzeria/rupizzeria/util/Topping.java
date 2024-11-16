@@ -1,7 +1,7 @@
 package projects.rupizzeria.rupizzeria.util;
 
 /**
- * Enum class for the pizza toppings
+ * Enum class for the pizza toppings.
  * @author Michael Ehresman
  */
 public enum Topping {
