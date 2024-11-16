@@ -27,7 +27,7 @@ public class MainController {
 
     private Stage primaryStage; //the reference of the main window.
     private Scene primaryScene;  //the ref. of the scene set to the primaryStage
-    private Order currentOrder;
+    private CurrentOrderController currentOrderController;
     private ArrayList<Order> orderList;
     private int counter;
 
@@ -37,9 +37,8 @@ public class MainController {
     public MainController()
     {
         this.counter = FIRST_ORDER_ID;
-        this.currentOrder = new Order();
         this.orderList = new ArrayList<Order>();
-        this.orderList.add(this.currentOrder);
+        this.currentOrderController = new CurrentOrderController();
     }
 
     /**
@@ -143,15 +142,18 @@ public class MainController {
      * @return the orderList
      */
     public ArrayList<Order> getOrder() {return orderList;}
-
-    /**
-     * Getter method for the current order.
-     */
-    public Order getCurrentOrder(){return this.currentOrder;}
-
+    
     /**
      * Getter method for the counter.
      * @return the counter
      */
-    public int getCounter(){return counter;}
+    public int getCounter(){return this.counter;}
+
+    /**
+     * Setter method for the counter.
+     * @param index index to set counter to
+     */
+    public void setCounter(int index) {
+        this.counter = index;
+    }
 }

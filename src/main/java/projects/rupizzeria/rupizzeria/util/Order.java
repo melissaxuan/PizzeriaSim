@@ -18,8 +18,17 @@ public class Order {
      * Default constructor for Order.
      */
     public Order() {
-        number = FIRST_ORDER_ID;
-        pizzas = new ArrayList<Pizza>();
+        this.number = FIRST_ORDER_ID;
+        this.pizzas = new ArrayList<Pizza>();
+    }
+
+    /**
+     * Parameter constructor to create a new Order with a set Order number.
+     * @param id the number for this Order
+     */
+    public Order(int id) {
+        this.number = id;
+        this.pizzas = new ArrayList<Pizza>();
     }
 
     /**
@@ -70,7 +79,7 @@ public class Order {
 
     /**
      * Returns Order ID number.
-     * @return Order number.
+     * @return Order number
      */
     public int getNumber() {
         return number;

@@ -20,6 +20,7 @@ import java.io.IOException;
  * Controls current order view.
  */
 public class CurrentOrderController {
+    private final int COUNT_INCR = 1;
     @FXML
     private Button bt_addpizza;
 
@@ -116,19 +117,25 @@ public class CurrentOrderController {
      */
     @FXML
     void removePizza(ActionEvent event) {
-        mainController.getCurrentOrder().removePizza(lv_pizzas.getSelectionModel().getSelectedIndex());
+        this.mainController.getCurrentOrder().removePizza(this.lv_pizzas.getSelectionModel().getSelectedIndex());
     }
 
+    /**
+     * Places Order and increments Counter.
+     * @param event action event
+     */
     @FXML
     void placeOrder(ActionEvent event) {
-
+        this.mainController.getOrder().add(this.currOrder);
+        this.mainController.setCounter(this.mainController.getCounter() + COUNT_INCR);
     }
 
     @FXML
     void removeOrder(ActionEvent event) {
-
+        this.mainController.getOrder().removeIf(o -> o.getNumber() == this.currOrder.getNumber());
+        this.mainController.setCurrent(new Order(this.mainController.getCounter() + COUNT_INCR));
+        this.mainController.setCounter(this.mainController.getCounter() + COUNT_INCR);
     }
-
 
     /**
      * Returns current Order object.
