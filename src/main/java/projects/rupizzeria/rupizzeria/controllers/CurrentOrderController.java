@@ -1,20 +1,21 @@
 package projects.rupizzeria.rupizzeria.controllers;
-import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import projects.rupizzeria.rupizzeria.pizza.Pizza;
 import projects.rupizzeria.rupizzeria.util.Order;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 /**
  * Controls current order view.
@@ -34,7 +35,7 @@ public class CurrentOrderController {
     private Button bt_removepizza;
 
     @FXML
-    private ListView<?> lv_pizzas;
+    private ListView<Pizza> lv_pizzas;
 
     @FXML
     private Text txt_currentorderheader;
@@ -58,11 +59,10 @@ public class CurrentOrderController {
     private Order currOrder;
 //    private ObservableList<String> colorList, fruitList, peopleList;
 
-    /**
-     * Default constructor for CurrentOrderController.
-     */
-    public CurrentOrderController() {
-        this.currOrder = new Order();
+
+
+    @FXML
+    void initialize() {
     }
 
     /**
@@ -77,6 +77,7 @@ public class CurrentOrderController {
         this.stage = stage;
         this.primaryStage = primaryStage;
         this.primaryScene = primaryScene;
+        refreshPage();
     }
 
     /**
@@ -101,6 +102,8 @@ public class CurrentOrderController {
             // Pass references to the OrderController
             OrderController thirdViewController = loader.getController();
             thirdViewController.setMainController(this.mainController, popupStage, this.primaryStage, this.primaryScene);
+
+            stage.close();
         } catch (IOException e) {
             // Handle exceptions with an alert
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -115,10 +118,13 @@ public class CurrentOrderController {
      * Removes Pizza from list of Pizzas in Order.
      * @param event action event
      */
-//    @FXML
-//    void removePizza(ActionEvent event) {
-//        this.mainController.getCurrentOrder().removePizza(this.lv_pizzas.getSelectionModel().getSelectedIndex());
-//    }
+    @FXML
+    void removePizza(ActionEvent event) {
+        if (this.lv_pizzas.getSelectionModel().getSelectedItem() != null) {
+            this.mainController.getCurrentOrder().removePizza(this.lv_pizzas.getSelectionModel().getSelectedIndex());
+            refreshPage();
+        }
+    }
 
     /**
      * Places Order and increments Counter.
@@ -126,16 +132,29 @@ public class CurrentOrderController {
      */
     @FXML
     void placeOrder(ActionEvent event) {
-        this.mainController.getOrder().add(this.currOrder);
-        this.mainController.setCounter(this.mainController.getCounter() + COUNT_INCR);
+        if (!this.mainController.getCurrentOrder().getPizzas().isEmpty()) {
+            Order o = new Order(this.mainController.getCurrentOrder());
+            this.mainController.getOrder().add(o);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Order Placed");
+            alert.setHeaderText(null);
+            alert.setContentText("Order " + this.mainController.getCurrentOrder().getNumber() + " placed.");
+            alert.showAndWait();
+
+            this.mainController.setCounter(this.mainController.getCounter() + COUNT_INCR);
+            this.mainController.setCurrentOrder(new Order(this.mainController.getCounter()));
+            refreshPage();
+        }
     }
 
-//    @FXML
-//    void removeOrder(ActionEvent event) {
-//        this.mainController.getOrder().removeIf(o -> o.getNumber() == this.currOrder.getNumber());
-//        this.mainController.setCurrent(new Order(this.mainController.getCounter() + COUNT_INCR));
-//        this.mainController.setCounter(this.mainController.getCounter() + COUNT_INCR);
-//    }
+    @FXML
+    void clearOrder(ActionEvent event) {
+        if (!this.mainController.getCurrentOrder().getPizzas().isEmpty()) {
+            this.mainController.setCurrentOrder(new Order(this.mainController.getCounter()));
+            refreshPage();
+        }
+    }
 
     /**
      * Returns current Order object.
@@ -143,5 +162,18 @@ public class CurrentOrderController {
      */
     public Order getCurrOrder() {
         return currOrder;
+    }
+
+    private void refreshPage() {
+        lv_pizzas.setItems(FXCollections.observableArrayList(this.mainController.getCurrentOrder().getPizzas()));
+        txt_orderno.setText("Order number: " + this.mainController.getCurrentOrder().getNumber());
+
+        DecimalFormat df = new DecimalFormat("0.00");
+        String subtotal = df.format(this.mainController.getCurrentOrder().calcSubtotal());
+        String tax = df.format(this.mainController.getCurrentOrder().calcTaxes());
+        String total = df.format(this.mainController.getCurrentOrder().calcOrderTotal());
+        txt_subtotal.setText("Subtotal: $" + subtotal);
+        txt_tax.setText("Sales Tax: $" + tax);
+        txt_ordertotal.setText("Order Total: $" + total);
     }
 }

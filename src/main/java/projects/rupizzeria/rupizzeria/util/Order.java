@@ -10,7 +10,8 @@ import java.util.ArrayList;
 public class Order {
     private final int FIRST_ORDER_ID = 1;
     private final double NJ_SALES_TAX_RATE = 0.06625;
-    private final double INITIAL_TOTAL = 0;
+    private final double INITIAL_TOTAL = 0.0;
+    private final double HUNDRED = 100.0;
     private int number;
     private ArrayList<Pizza> pizzas;
 
@@ -20,6 +21,15 @@ public class Order {
     public Order() {
         this.number = FIRST_ORDER_ID;
         this.pizzas = new ArrayList<Pizza>();
+    }
+
+    /**
+     * Copy constructor for Order object.
+     * @param o Order object to copy values from
+     */
+    public Order(Order o) {
+        this.number = o.number;
+        this.pizzas = o.pizzas;
     }
 
     /**
@@ -58,7 +68,7 @@ public class Order {
             subtotal += p.price();
         }
 
-        return subtotal;
+        return Math.round(subtotal * HUNDRED) / HUNDRED;
     }
 
     /**
@@ -66,7 +76,7 @@ public class Order {
      * @return sales tax of Order
      */
     public double calcTaxes() {
-        return calcSubtotal() * NJ_SALES_TAX_RATE;
+        return Math.round((calcSubtotal() * NJ_SALES_TAX_RATE) * HUNDRED) / HUNDRED;
     }
 
     /**
@@ -74,7 +84,7 @@ public class Order {
      * @return total cost of Order
      */
     public double calcOrderTotal() {
-        return calcSubtotal() + calcTaxes();
+        return Math.round((calcSubtotal() + calcTaxes()) * HUNDRED) / HUNDRED;
     }
 
     /**
@@ -99,5 +109,10 @@ public class Order {
      */
     public void setNumber(int number) {
         this.number = number;
+    }
+
+    @Override
+    public String toString() {
+        return pizzas.toString();
     }
 }

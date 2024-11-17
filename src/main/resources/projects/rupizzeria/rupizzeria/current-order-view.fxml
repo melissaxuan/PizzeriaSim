@@ -63,9 +63,9 @@
                   <HBox alignment="TOP_RIGHT" maxWidth="424.0" minWidth="300.0" prefHeight="30.0" prefWidth="424.0" spacing="20.0" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                      <children>
                         <Button fx:id="bt_addpizza" mnemonicParsing="false" onAction="#addPizza" text="Add Pizza" />
-                        <Button fx:id="bt_removepizza" mnemonicParsing="false" text="Remove Pizza" />
-                        <Button fx:id="bt_placeorder" mnemonicParsing="false" text="Place Order" />
-                        <Button fx:id="bt_removeorder" mnemonicParsing="false" text="Remove Order" />
+                        <Button fx:id="bt_removepizza" mnemonicParsing="false" onAction="#removePizza" text="Remove Pizza" />
+                        <Button fx:id="bt_placeorder" mnemonicParsing="false" onAction="#placeOrder" text="Place Order" />
+                        <Button fx:id="bt_removeorder" mnemonicParsing="false" onAction="#clearOrder" text="Clear Order" />
                      </children>
                   </HBox>
                </children>
