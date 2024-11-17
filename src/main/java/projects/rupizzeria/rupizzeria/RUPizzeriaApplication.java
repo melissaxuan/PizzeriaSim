@@ -21,7 +21,7 @@ public class RUPizzeriaApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(RUPizzeriaApplication.class.getResource("RUPizzeria.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 650, 500);
+        Scene scene = new Scene(fxmlLoader.load(), 750, 500);
         MainController mainController = fxmlLoader.getController();
         mainController.setPrimaryStage(stage, scene);
         stage.setTitle("RU Pizzeria");

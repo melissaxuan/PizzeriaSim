@@ -57,7 +57,7 @@ public class MainController {
     }
 
     /**
-     * Navigates to the onOrdersPlaced scene bill-view.fxml when the image view is clicked
+     * Navigates to the onOrdersPlaced scene bill-view.fxml when the image view is clicked.
      */
     @FXML
     public void onOrdersPlaced() {
@@ -65,18 +65,17 @@ public class MainController {
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/projects/rupizzeria/rupizzeria/bill-view.fxml"));
-            Scene popupScene = new Scene(loader.load(), 600, 400);
+            Scene popupScene = new Scene(loader.load(), 600, 600);
             popupStage.setScene(popupScene);
             popupStage.setTitle("Bill View");
-            popupStage.initModality(Modality.APPLICATION_MODAL); // Make it modal (blocks interaction with other windows)
-            popupStage.show(); // Show the popup window
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.show();
 
 
             BillViewController secondViewController = loader.getController();
 
             secondViewController.setMainController(this, popupStage, primaryStage, primaryScene);
         } catch (IOException e) {
-            // Handle exceptions with an alert
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
             alert.setHeaderText("Loading bill-view.fxml.");
@@ -86,7 +85,7 @@ public class MainController {
     }
 
     /**
-     * Navigates to the oncurrentOrder scene current-order-view.fxml when the image view is clicked.
+     * Navigates to the oncurrentOrder scene current-order-view.fxml when the image vi ew is clicked.
      */
     @FXML
     public void onCurrentOrder() {
@@ -95,16 +94,14 @@ public class MainController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/projects/rupizzeria/rupizzeria/current-order-view.fxml"));
             Scene popupScene = new Scene(loader.load(), CURR_ORDER_HEIGHT, CURR_ORDER_WIDTH);
-
             popupStage.setScene(popupScene);
             popupStage.setTitle("Current Order");
-            popupStage.initModality(Modality.APPLICATION_MODAL); // Make it modal (blocks interaction with other windows)
-            popupStage.show(); // Show the popup window
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.show();
 
             CurrentOrderController forthViewController = loader.getController();
             forthViewController.setMainController(this, popupStage, primaryStage, primaryScene);
         } catch (IOException e) {
-            // Handle exceptions with an alert
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
             alert.setHeaderText("Loading current-order-view.fxml.");
@@ -118,24 +115,22 @@ public class MainController {
      */
     @FXML
     public void Order() {
-        Stage popupStage = new Stage(); // Create a new Stage for the popup
+        Stage popupStage = new Stage();
 
         try {
-            // Load the order-view.fxml for the popup
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/projects/rupizzeria/rupizzeria/order-view.fxml"));
             Scene popupScene = new Scene(loader.load(), ORDER_HEIGHT, ORDER_WIDTH);
 
-            // Set the scene for the popup stage
             popupStage.setScene(popupScene);
             popupStage.setTitle("Order A Pizza");
-            popupStage.initModality(Modality.APPLICATION_MODAL); // Make it modal (blocks interaction with other windows)
-            popupStage.show(); // Show the popup window
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.show();
 
-            // Pass references to the OrderController
+
             OrderController thirdViewController = loader.getController();
             thirdViewController.setMainController(this, popupStage, primaryStage, primaryScene);
         } catch (IOException e) {
-            // Handle exceptions with an alert
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
             alert.setHeaderText("Loading order-view.fxml.");
@@ -174,4 +169,9 @@ public class MainController {
     public void setCounter(int index) {
         this.counter = index;
     }
+    /**
+     * Removes the order at the given index
+     * @param index order to be removed
+     */
+    public void removeOrder(int index) {orderList.remove(index);}
 }
