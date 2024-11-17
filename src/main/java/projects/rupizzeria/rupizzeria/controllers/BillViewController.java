@@ -135,7 +135,7 @@ public class BillViewController {
             }
         }
         lv_bill.getItems().removeFirst();
-        tf_orderTotal.clear();
+        printView();
     }
         /**
          * Prints the orderlist to the list view,total price and adds the order numbers to the combo box.
