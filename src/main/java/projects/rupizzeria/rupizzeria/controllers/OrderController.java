@@ -33,6 +33,8 @@ public class OrderController {
     private final double MAX_OPACITY = 1.0;
     private final int MAX_TOPPINGS = 7;
     private final double HUNDRED = 100.0;
+    private final int ALERT_WIDTH = 480;
+    private final int ALERT_HEIGHT = 150;
 
     @FXML
     private Button bt_add;
@@ -201,7 +203,7 @@ public class OrderController {
         alert.setHeaderText(null);
         alert.setContentText("Pizza was added to order " + mainController.getCurrentOrder().getNumber() + " with details: \n" + pizza.toString());
         alert.setResizable(true);
-        alert.getDialogPane().setPrefSize(480, 150);
+        alert.getDialogPane().setPrefSize(ALERT_WIDTH, ALERT_HEIGHT);
         alert.showAndWait();
     }
 

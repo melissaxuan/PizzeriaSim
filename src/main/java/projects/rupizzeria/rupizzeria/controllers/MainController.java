@@ -20,6 +20,10 @@ import java.util.ArrayList;
  */
 public class MainController {
     private final int FIRST_ORDER_ID = 1;
+    private final int ORDER_WIDTH = 547;
+    private final int ORDER_HEIGHT = 614;
+    private final int CURR_ORDER_WIDTH = 600;
+    private final int CURR_ORDER_HEIGHT = 400;
     @FXML
     private Label welcomeText;
 
@@ -61,7 +65,7 @@ public class MainController {
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/projects/rupizzeria/rupizzeria/bill-view.fxml"));
-            Scene popupScene = new Scene(loader.load(), 400, 600);
+            Scene popupScene = new Scene(loader.load(), 600, 400);
             popupStage.setScene(popupScene);
             popupStage.setTitle("Bill View");
             popupStage.initModality(Modality.APPLICATION_MODAL); // Make it modal (blocks interaction with other windows)
@@ -90,7 +94,7 @@ public class MainController {
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/projects/rupizzeria/rupizzeria/current-order-view.fxml"));
-            Scene popupScene = new Scene(loader.load(), 600, 400);
+            Scene popupScene = new Scene(loader.load(), CURR_ORDER_HEIGHT, CURR_ORDER_WIDTH);
 
             popupStage.setScene(popupScene);
             popupStage.setTitle("Current Order");
@@ -119,7 +123,7 @@ public class MainController {
         try {
             // Load the order-view.fxml for the popup
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/projects/rupizzeria/rupizzeria/order-view.fxml"));
-            Scene popupScene = new Scene(loader.load(), 614, 547);
+            Scene popupScene = new Scene(loader.load(), ORDER_HEIGHT, ORDER_WIDTH);
 
             // Set the scene for the popup stage
             popupStage.setScene(popupScene);

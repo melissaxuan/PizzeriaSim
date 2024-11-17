@@ -24,6 +24,8 @@ import java.text.DecimalFormat;
  */
 public class CurrentOrderController {
     private final int COUNT_INCR = 1;
+    private final int ORDER_WIDTH = 614;
+    private final int ORDER_HEIGHT = 547;
     @FXML
     private Button bt_addpizza;
 
@@ -85,7 +87,7 @@ public class CurrentOrderController {
         try {
             // Load the order-view.fxml for the popup
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/projects/rupizzeria/rupizzeria/order-view.fxml"));
-            Scene popupScene = new Scene(loader.load(), 614, 547);
+            Scene popupScene = new Scene(loader.load(), ORDER_WIDTH, ORDER_HEIGHT);
 
             // Set the scene for the popup stage
             popupStage.setScene(popupScene);
