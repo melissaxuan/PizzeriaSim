@@ -13,10 +13,12 @@ import java.util.ArrayList;
  * @author Melissa Xuan
  */
 public class BuildYourOwn extends Pizza {
-    private final double SMALL_PRICE = 8.99;
-    private final double MED_PRICE = 10.99;
-    private final double LARGE_PRICE = 12.99;
-    private final double TOPPING_PRICE = 1.69;
+    public static final double SMALL_PRICE = 8.99;
+    public static final double MED_PRICE = 10.99;
+    public static final double LARGE_PRICE = 12.99;
+    public static final double TOPPING_PRICE = 1.69;
+    private final double FREE = 0.0;
+    private final double HUNDRED = 100.0;
     private final int MAX_TOPPINGS = 7;
 
     /**
@@ -45,10 +47,10 @@ public class BuildYourOwn extends Pizza {
     public double price() {
         double toppingsPrice = super.getToppings().size() * TOPPING_PRICE;
         switch(super.getSize()) {
-            case SMALL -> {return SMALL_PRICE + toppingsPrice;}
-            case MEDIUM -> {return MED_PRICE + toppingsPrice;}
-            case LARGE -> {return LARGE_PRICE + toppingsPrice;}
-            default -> {return 0;}
+            case SMALL -> {return Math.round((SMALL_PRICE + toppingsPrice) * HUNDRED) / HUNDRED;}
+            case MEDIUM -> {return Math.round((MED_PRICE + toppingsPrice) * HUNDRED) / HUNDRED;}
+            case LARGE -> {return Math.round((LARGE_PRICE + toppingsPrice) * HUNDRED) / HUNDRED;}
+            default -> {return FREE;}
         }
     }
 }
