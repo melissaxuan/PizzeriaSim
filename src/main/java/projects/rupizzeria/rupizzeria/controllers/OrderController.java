@@ -191,6 +191,9 @@ public class OrderController {
             pizza.setSize(Size.LARGE);
         }
 
+
+      //  mainController.getCurrentOrder().addPizza(pizza);
+
         if (cb_pizzatype.getValue().equalsIgnoreCase("Build Your Own Pizza")) {
             pizza.setToppings(new ArrayList<>(lv_chosentoppings.getItems()));
         }
@@ -203,6 +206,7 @@ public class OrderController {
         alert.setResizable(true);
         alert.getDialogPane().setPrefSize(480, 150);
         alert.showAndWait();
+
     }
 
     /**

@@ -82,6 +82,6 @@ public abstract class Pizza {
     public String toString() {
         return "$" + price() + " " + this.getSize().toString() + " " +
                 this.getClass().toString().substring(this.getClass().toString().lastIndexOf('.') + ONE_INCR).toUpperCase() +
-                " Pizza: Toppings " + this.toppings + ", " + this.getCrust().toString() + " Crust";
+                " Pizza: Toppings " + this.toppings + ", " + this.getCrust().toString() + " Crust"+"\n";
     }
 }
