@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class BBQChicken extends Pizza {
-    private final double SMALL_PRICE = 14.99;
-    private final double MED_PRICE = 16.99;
-    private final double LARGE_PRICE = 19.99;
+    public static final double SMALL_PRICE = 14.99;
+    public static final double MED_PRICE = 16.99;
+    public static final double LARGE_PRICE = 19.99;
     /**
      * Default BBQChicken constructor.
      */

@@ -15,9 +15,9 @@ import java.util.Arrays;
  * @author Melissa Xuan
  */
 public class Meatzza extends Pizza {
-    private final double SMALL_PRICE = 17.99;
-    private final double MED_PRICE = 19.99;
-    private final double LARGE_PRICE = 21.99;
+    public static final double SMALL_PRICE = 17.99;
+    public static final double MED_PRICE = 19.99;
+    public static final double LARGE_PRICE = 21.99;
 
     /**
      * Default Meatzza constructor.

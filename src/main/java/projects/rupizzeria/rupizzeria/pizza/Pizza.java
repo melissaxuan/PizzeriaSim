@@ -11,6 +11,8 @@ import java.util.ArrayList;
  * @author Melissa Xuan
  */
 public abstract class Pizza {
+    private final int START_STR = 0;
+    private final int ONE_INCR = 1;
     private ArrayList<Topping> toppings;
     private Crust crust;
     private Size size;
@@ -78,7 +80,8 @@ public abstract class Pizza {
 
     @Override
     public String toString() {
-        return this.getSize().toString() + " " + Object.class + ": Toppings [" + this.toppings + "], "
-                + this.getCrust().toString() + " Crust";
+        return "$" + price() + " " + this.getSize().toString() + " " +
+                this.getClass().toString().substring(this.getClass().toString().lastIndexOf('.') + ONE_INCR).toUpperCase() +
+                " Pizza: Toppings " + this.toppings + ", " + this.getCrust().toString() + " Crust";
     }
 }

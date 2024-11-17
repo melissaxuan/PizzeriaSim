@@ -8,6 +8,10 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import projects.rupizzeria.rupizzeria.pizza.impl.Deluxe;
+import projects.rupizzeria.rupizzeria.pizza.impl.BBQChicken;
+import projects.rupizzeria.rupizzeria.pizza.impl.Meatzza;
+import projects.rupizzeria.rupizzeria.pizza.impl.BuildYourOwn;
 import projects.rupizzeria.rupizzeria.pizza.ChicagoPizza;
 import projects.rupizzeria.rupizzeria.pizza.NYPizza;
 import projects.rupizzeria.rupizzeria.pizza.Pizza;
@@ -23,6 +27,7 @@ public class OrderController {
     private final double MIN_OPACITY = 0.0;
     private final double MAX_OPACITY = 1.0;
     private final int MAX_TOPPINGS = 7;
+    private final double HUNDRED = 100.0;
 
     @FXML
     private Button bt_add;
@@ -79,6 +84,12 @@ public class OrderController {
     private Text txt_crust;
 
     @FXML
+    private Text txt_price;
+
+    @FXML
+    private Text txt_priceheader;
+
+    @FXML
     private Text txt_remove;
 
     @FXML
@@ -127,13 +138,16 @@ public class OrderController {
             lv_chosentoppings.getItems().add(lv_availtoppings.getSelectionModel().getSelectedItem());
             lv_availtoppings.getItems().remove(lv_availtoppings.getSelectionModel().getSelectedIndex());
         }
-        else {
+        else if (lv_availtoppings.getSelectionModel().getSelectedItem() != null &&
+            lv_chosentoppings.getItems().size() >= MAX_TOPPINGS) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Maximum Toppings");
             alert.setHeaderText(null);
             alert.setContentText("There can only be a maximum of seven (7) toppings on a Build Your Own Pizza.");
             alert.showAndWait();
         }
+
+        setupBYOPrice();
     }
 
     @FXML
@@ -150,7 +164,7 @@ public class OrderController {
         }
 
         Pizza pizza = pizzaFactory.createDeluxe();
-        setSpecialtyCrust(pizza, pizzaFactory, crust);
+        pizza = setSpecialtyCrust(pizza, pizzaFactory, crust);
 
         if (tg_size.getSelectedToggle().toString().contains("Small")) {
             pizza.setSize(Size.SMALL);
@@ -162,7 +176,20 @@ public class OrderController {
             pizza.setSize(Size.LARGE);
         }
 
+        if (cb_pizzatype.getValue().equalsIgnoreCase("Build Your Own Pizza")) {
+            pizza.setToppings(new ArrayList<>(lv_chosentoppings.getItems()));
+        }
         mainController.getCurrentOrder().addPizza(pizza);
+        System.out.println(pizza.toString());
+        System.out.println(mainController.getCurrentOrder().toString());
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Pizza Added");
+        alert.setHeaderText(null);
+        alert.setContentText("Pizza was added to order " + mainController.getCurrentOrder().getNumber() + " with details: \n" + pizza.toString());
+        alert.setResizable(true);
+        alert.getDialogPane().setPrefSize(480, 150);
+        alert.showAndWait();
     }
 
     @FXML
@@ -171,10 +198,16 @@ public class OrderController {
             lv_availtoppings.getItems().add(lv_chosentoppings.getSelectionModel().getSelectedItem());
             lv_chosentoppings.getItems().remove(lv_chosentoppings.getSelectionModel().getSelectedIndex());
         }
+        setupBYOPrice();
     }
 
     @FXML
     void selectPizzaType(ActionEvent event) {
+        rb_chicagocrust.setSelected(true);
+        rb_nycrust.setSelected(false);
+        rb_smallsize.setSelected(true);
+        rb_mediumsize.setSelected(false);
+        rb_largesize.setSelected(false);
         switch(cb_pizzatype.getValue()) {
             case "Deluxe Pizza" -> {
                 setupDeluxe();
@@ -196,6 +229,121 @@ public class OrderController {
         enablePlaceOrder();
     }
 
+    @FXML
+    void selectSmall(ActionEvent event) {
+        switch(cb_pizzatype.getValue()) {
+            case "Deluxe Pizza" -> {
+                setupDeluxePrice();
+                break;
+            }
+            case "BBQ Chicken Pizza" -> {
+                setupBBQChickenPrice();
+                break;
+            }
+            case "Meatzza Pizza" -> {
+                setupMeatzzaPrice();
+                break;
+            }
+            case "Build Your Own Pizza" -> {
+                setupBYOPrice();
+                break;
+            }
+        }
+    }
+
+    @FXML
+    void selectMedium(ActionEvent event) {
+        switch(cb_pizzatype.getValue()) {
+            case "Deluxe Pizza" -> {
+                setupDeluxePrice();
+                break;
+            }
+            case "BBQ Chicken Pizza" -> {
+                setupBBQChickenPrice();
+                break;
+            }
+            case "Meatzza Pizza" -> {
+                setupMeatzzaPrice();
+                break;
+            }
+            case "Build Your Own Pizza" -> {
+                setupBYOPrice();
+                break;
+            }
+        }
+    }
+
+    @FXML
+    void selectLarge(ActionEvent event) {
+        switch(cb_pizzatype.getValue()) {
+            case "Deluxe Pizza" -> {
+                setupDeluxePrice();
+                break;
+            }
+            case "BBQ Chicken Pizza" -> {
+                setupBBQChickenPrice();
+                break;
+            }
+            case "Meatzza Pizza" -> {
+                setupMeatzzaPrice();
+                break;
+            }
+            case "Build Your Own Pizza" -> {
+                setupBYOPrice();
+                break;
+            }
+        }
+    }
+
+    private void setupDeluxePrice() {
+        if (tg_size.getSelectedToggle().toString().contains("Small")) {
+            txt_price.setText("$" + Deluxe.SMALL_PRICE);
+        }
+        else if (tg_size.getSelectedToggle().toString().contains("Medium")) {
+            txt_price.setText("$" + Deluxe.MED_PRICE);
+        }
+        else {
+            txt_price.setText("$" + Deluxe.LARGE_PRICE);
+        }
+    }
+
+    private void setupBBQChickenPrice() {
+        if (tg_size.getSelectedToggle().toString().contains("Small")) {
+            txt_price.setText("$" + BBQChicken.SMALL_PRICE);
+        }
+        else if (tg_size.getSelectedToggle().toString().contains("Medium")) {
+            txt_price.setText("$" + BBQChicken.MED_PRICE);
+        }
+        else {
+            txt_price.setText("$" + BBQChicken.LARGE_PRICE);
+        }
+    }
+
+    private void setupMeatzzaPrice() {
+        if (tg_size.getSelectedToggle().toString().contains("Small")) {
+            txt_price.setText("$" + Meatzza.SMALL_PRICE);
+        }
+        else if (tg_size.getSelectedToggle().toString().contains("Medium")) {
+            txt_price.setText("$" + Meatzza.MED_PRICE);
+        }
+        else {
+            txt_price.setText("$" + Meatzza.LARGE_PRICE);
+        }
+    }
+
+    private void setupBYOPrice() {
+        double toppingsPrice = lv_chosentoppings.getItems().size() * BuildYourOwn.TOPPING_PRICE;
+        if (tg_size.getSelectedToggle().toString().contains("Small")) {
+            txt_price.setText("$" + Math.round((BuildYourOwn.SMALL_PRICE + toppingsPrice) * HUNDRED) / HUNDRED);
+        }
+        else if (tg_size.getSelectedToggle().toString().contains("Medium")) {
+            txt_price.setText("$" + Math.round((BuildYourOwn.MED_PRICE + toppingsPrice) * HUNDRED) / HUNDRED);
+        }
+        else {
+            txt_price.setText("$" + Math.round((BuildYourOwn.LARGE_PRICE + toppingsPrice) * HUNDRED) / HUNDRED);
+        }
+    }
+
     /**
      * Enables the crust and size options for Deluxe pizza, and its toppings list.
      */
@@ -204,12 +352,13 @@ public class OrderController {
         rb_chicagocrust.setText("Chicago Style: Deep Dish");
         rb_nycrust.setText("NY Style: Brooklyn");
         enableSize();
-        rb_smallsize.setText("Small: $16.99");
-        rb_mediumsize.setText("Medium: $18.99");
-        rb_largesize.setText("Large: $20.99");
+        rb_smallsize.setText("Small: $" + Deluxe.SMALL_PRICE);
+        rb_mediumsize.setText("Medium: $" + Deluxe.MED_PRICE);
+        rb_largesize.setText("Large: $" + Deluxe.LARGE_PRICE);
         showFixedToppings();
         lv_availtoppings.setItems(FXCollections.observableArrayList(new ArrayList<Topping>(Arrays.asList(
                 Topping.SAUSAGE, Topping.PEPPERONI, Topping.GREEN_PEPPER, Topping.ONION, Topping.MUSHROOM))));
+        txt_price.setText("$" + Deluxe.SMALL_PRICE);
     }
 
     /**
@@ -220,13 +369,14 @@ public class OrderController {
         rb_chicagocrust.setText("Chicago Style: Pan");
         rb_nycrust.setText("NY Style: Thin");
         enableSize();
-        rb_smallsize.setText("Small: $14.99");
-        rb_mediumsize.setText("Medium: $16.99");
-        rb_largesize.setText("Large: $19.99");
+        rb_smallsize.setText("Small: $" + BBQChicken.SMALL_PRICE);
+        rb_mediumsize.setText("Medium: $" + BBQChicken.MED_PRICE);
+        rb_largesize.setText("Large: $" + BBQChicken.LARGE_PRICE);
         showFixedToppings();
         lv_availtoppings.getItems().removeAll();
         lv_availtoppings.setItems(FXCollections.observableArrayList(new ArrayList<Topping>(Arrays.asList(
                 Topping.BBQ_CHICKEN, Topping.GREEN_PEPPER, Topping.PROVOLONE, Topping.CHEDDAR))));
+        txt_price.setText("$" + BBQChicken.SMALL_PRICE);
     }
 
     /**
@@ -237,13 +387,14 @@ public class OrderController {
         rb_chicagocrust.setText("Chicago Style: Stuffed");
         rb_nycrust.setText("NY Style: Hand-tossed");
         enableSize();
-        rb_smallsize.setText("Small: $17.99");
-        rb_mediumsize.setText("Medium: $19.99");
-        rb_largesize.setText("Large: $21.99");
+        rb_smallsize.setText("Small: $" + Meatzza.SMALL_PRICE);
+        rb_mediumsize.setText("Medium: $" + Meatzza.MED_PRICE);
+        rb_largesize.setText("Large: $" + Meatzza.LARGE_PRICE);
         showFixedToppings();
         lv_availtoppings.getItems().removeAll();
         lv_availtoppings.setItems(FXCollections.observableArrayList(new ArrayList<Topping>(Arrays.asList(
                 Topping.SAUSAGE, Topping.PEPPERONI, Topping.BEEF, Topping.HAM))));
+        txt_price.setText("$" + Meatzza.SMALL_PRICE);
     }
 
     /**
@@ -253,9 +404,10 @@ public class OrderController {
         enableAll();
         rb_chicagocrust.setText("Chicago Style: Pan");
         rb_nycrust.setText("NY Style: Hand-tossed");
-        rb_smallsize.setText("Small: $8.99");
-        rb_mediumsize.setText("Medium: $10.99");
-        rb_largesize.setText("Large: $12.99");
+        rb_smallsize.setText("Small: $" + BuildYourOwn.SMALL_PRICE);
+        rb_mediumsize.setText("Medium: $" + BuildYourOwn.MED_PRICE);
+        rb_largesize.setText("Large: $" + BuildYourOwn.LARGE_PRICE);
+        txt_price.setText("$" + BuildYourOwn.SMALL_PRICE);
     }
 
     /**
@@ -289,6 +441,8 @@ public class OrderController {
         bt_remove.setDisable(true);
         bt_placeorder.setOpacity(MIN_OPACITY);
         bt_placeorder.setDisable(true);
+        txt_priceheader.setOpacity(MIN_OPACITY);
+        txt_price.setOpacity(MIN_OPACITY);
     }
 
     /**
@@ -356,6 +510,8 @@ public class OrderController {
     private void enablePlaceOrder() {
         bt_placeorder.setOpacity(MAX_OPACITY);
         bt_placeorder.setDisable(false);
+        txt_priceheader.setOpacity(MAX_OPACITY);
+        txt_price.setOpacity(MAX_OPACITY);
     }
 
     /**
@@ -381,7 +537,8 @@ public class OrderController {
     /**
      * Helper method to set pizza crust and specialty type.
      */
-    private void setSpecialtyCrust(Pizza pizza, PizzaFactory pizzaFactory, String crust) {
+    private Pizza setSpecialtyCrust(Pizza pizza, PizzaFactory pizzaFactory, String crust) {
+        System.out.println(cb_pizzatype.getValue());
         switch (cb_pizzatype.getValue()) {
             case "Deluxe Pizza" :
                 pizza = pizzaFactory.createDeluxe();
@@ -389,29 +546,30 @@ public class OrderController {
                     pizza.setCrust(Crust.DEEPDISH);
                 else
                     pizza.setCrust(Crust.BROOKLYN);
-                break;
+                return pizza;
             case "BBQ Chicken Pizza" :
                 pizza = pizzaFactory.createBBQChicken();
                 if (crust.equals("Chicago"))
                     pizza.setCrust(Crust.PAN);
                 else
                     pizza.setCrust(Crust.THIN);
-                break;
+                return pizza;
             case "Meatzza Pizza" :
                 pizza = pizzaFactory.createMeatzza();
                 if (crust.equals("Chicago"))
                     pizza.setCrust(Crust.STUFFED);
                 else
                     pizza.setCrust(Crust.HANDTOSSED);
-                break;
+                return pizza;
             case "Build Your Own Pizza" :
                 pizza = pizzaFactory.createBuildYourOwn();
                 if (crust.equals("Chicago"))
                     pizza.setCrust(Crust.PAN);
                 else
                     pizza.setCrust(Crust.HANDTOSSED);
-                break;
+                return pizza;
         }
+        return pizza;
     }
 
 }
