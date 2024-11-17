@@ -157,4 +157,9 @@ public class MainController {
     public void setCounter(int index) {
         this.counter = index;
     }
+    /**
+     * Removes the order at the given index
+     * @param index order to be removed
+     */
+    public void removeOrder(int index) {orderList.remove(index);}
 }

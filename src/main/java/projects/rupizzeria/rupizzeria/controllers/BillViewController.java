@@ -42,9 +42,21 @@ public class BillViewController {
     {
         printView();
     }
+
+    /**
+     * Method to cancel the selected order in the list view.
+     */
     @FXML
     public void onCancel()
     {
+        String selectedOrder = Lv_bill.getSelectionModel().getSelectedItem();
+        int index = Lv_bill.getSelectionModel().getSelectedIndex();
+        if(selectedOrder != null)
+        {
+            Lv_bill.getItems().remove(selectedOrder);
+        }
+        Lv_bill.getItems().clear();
+        printView();
 
     }
 

@@ -162,7 +162,7 @@ public class OrderController {
             pizza.setSize(Size.LARGE);
         }
 
-        mainController.getCurrentOrder().addPizza(pizza);
+      //  mainController.getCurrentOrder().addPizza(pizza);
     }
 
     @FXML
