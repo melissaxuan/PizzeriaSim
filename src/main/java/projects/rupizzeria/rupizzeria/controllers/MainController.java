@@ -20,8 +20,8 @@ import java.util.ArrayList;
  */
 public class MainController {
     private final int FIRST_ORDER_ID = 1;
-    private final int ORDER_WIDTH = 547;
-    private final int ORDER_HEIGHT = 614;
+    private final int ORDER_WIDTH = 614;
+    private final int ORDER_HEIGHT = 547;
     private final int CURR_ORDER_WIDTH = 600;
     private final int CURR_ORDER_HEIGHT = 400;
     @FXML
@@ -93,7 +93,7 @@ public class MainController {
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/projects/rupizzeria/rupizzeria/current-order-view.fxml"));
-            Scene popupScene = new Scene(loader.load(), CURR_ORDER_HEIGHT, CURR_ORDER_WIDTH);
+            Scene popupScene = new Scene(loader.load(), CURR_ORDER_WIDTH, CURR_ORDER_HEIGHT);
             popupStage.setScene(popupScene);
             popupStage.setTitle("Current Order");
             popupStage.initModality(Modality.APPLICATION_MODAL);
@@ -120,7 +120,7 @@ public class MainController {
         try {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/projects/rupizzeria/rupizzeria/order-view.fxml"));
-            Scene popupScene = new Scene(loader.load(), ORDER_HEIGHT, ORDER_WIDTH);
+            Scene popupScene = new Scene(loader.load(), ORDER_WIDTH, ORDER_HEIGHT);
 
             popupStage.setScene(popupScene);
             popupStage.setTitle("Order A Pizza");
