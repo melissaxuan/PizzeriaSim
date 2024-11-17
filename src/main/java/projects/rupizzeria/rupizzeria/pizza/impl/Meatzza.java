@@ -18,6 +18,7 @@ public class Meatzza extends Pizza {
     public static final double SMALL_PRICE = 17.99;
     public static final double MED_PRICE = 19.99;
     public static final double LARGE_PRICE = 21.99;
+    public final double FREE = 0.0;
 
     /**
      * Default Meatzza constructor.
@@ -38,7 +39,7 @@ public class Meatzza extends Pizza {
             case SMALL -> {return SMALL_PRICE;}
             case MEDIUM -> {return MED_PRICE;}
             case LARGE -> {return LARGE_PRICE;}
-            default -> {return 0;}
+            default -> {return FREE;}
         }
     }
 }
