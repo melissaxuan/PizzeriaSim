@@ -23,6 +23,11 @@ import projects.rupizzeria.rupizzeria.util.Topping;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Controls order view.
+ *
+ * @author Melissa Xuan
+ */
 public class OrderController {
     private final double MIN_OPACITY = 0.0;
     private final double MAX_OPACITY = 1.0;
@@ -103,9 +108,10 @@ public class OrderController {
     private Scene primaryScene;
     private Stage primaryStage;
 
-    // private Order currOrder; ---- add to main controller
-    // private ArrayList<Order> orderList; ---- add to main controller
 
+    /**
+     * Initializes order view.
+     */
     @FXML
     void initialize() {
         cb_pizzatype.getItems().addAll(
@@ -117,6 +123,7 @@ public class OrderController {
         lv_availtoppings.setItems(FXCollections.observableArrayList(Topping.values()));
         disableAll();
     }
+
     /**
      * sets the main controller for navigation purposes.
      * @param controller controller of the mainController
@@ -131,6 +138,10 @@ public class OrderController {
         this.primaryScene = primaryScene;
     }
 
+    /**
+     * Processes add button when adding toppings to Build Your Own Pizza.
+     * @param event action event
+     */
     @FXML
     void addTopping(ActionEvent event) {
         if (lv_availtoppings.getSelectionModel().getSelectedItem() != null &&
@@ -150,6 +161,10 @@ public class OrderController {
         setupBYOPrice();
     }
 
+    /**
+     * Processes add pizza to order button and adds pizza to current order.
+     * @param event action event
+     */
     @FXML
     void placePizzaOrder(ActionEvent event) {
         String crust = "Chicago";
@@ -180,8 +195,6 @@ public class OrderController {
             pizza.setToppings(new ArrayList<>(lv_chosentoppings.getItems()));
         }
         mainController.getCurrentOrder().addPizza(pizza);
-        System.out.println(pizza.toString());
-        System.out.println(mainController.getCurrentOrder().toString());
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Pizza Added");
@@ -192,6 +205,10 @@ public class OrderController {
         alert.showAndWait();
     }
 
+    /**
+     * Process remove topping button and removes topping from pizza.
+     * @param event action event
+     */
     @FXML
     void removeTopping(ActionEvent event) {
         if (lv_chosentoppings.getSelectionModel().getSelectedItem() != null) {
@@ -201,6 +218,10 @@ public class OrderController {
         setupBYOPrice();
     }
 
+    /**
+     * Processes selected pizza and makes rest of the page appear if this was the first pizza.
+     * @param event action event
+     */
     @FXML
     void selectPizzaType(ActionEvent event) {
         rb_chicagocrust.setSelected(true);
@@ -229,6 +250,10 @@ public class OrderController {
         enablePlaceOrder();
     }
 
+    /**
+     * Updates view with specific price when small pizza size is chosen.
+     * @param event action event
+     */
     @FXML
     void selectSmall(ActionEvent event) {
         switch(cb_pizzatype.getValue()) {
@@ -251,6 +276,10 @@ public class OrderController {
         }
     }
 
+    /**
+     * Updates view with specific price when medium pizza size is chosen.
+     * @param event action event
+     */
     @FXML
     void selectMedium(ActionEvent event) {
         switch(cb_pizzatype.getValue()) {
@@ -273,6 +302,10 @@ public class OrderController {
         }
     }
 
+    /**
+     * Updates view with specific price when large pizza size is chosen.
+     * @param event action event
+     */
     @FXML
     void selectLarge(ActionEvent event) {
         switch(cb_pizzatype.getValue()) {
@@ -295,6 +328,9 @@ public class OrderController {
         }
     }
 
+    /**
+     * Helper method to update pizza price display for deluxe pizza.
+     */
     private void setupDeluxePrice() {
         if (tg_size.getSelectedToggle().toString().contains("Small")) {
             txt_price.setText("$" + Deluxe.SMALL_PRICE);
@@ -307,6 +343,9 @@ public class OrderController {
         }
     }
 
+    /**
+     * Helper method to update pizza price display for BBQ Chicken pizza.
+     */
     private void setupBBQChickenPrice() {
         if (tg_size.getSelectedToggle().toString().contains("Small")) {
             txt_price.setText("$" + BBQChicken.SMALL_PRICE);
@@ -319,6 +358,9 @@ public class OrderController {
         }
     }
 
+    /**
+     * Helper method to update pizza price display for Meatzza pizza.
+     */
     private void setupMeatzzaPrice() {
         if (tg_size.getSelectedToggle().toString().contains("Small")) {
             txt_price.setText("$" + Meatzza.SMALL_PRICE);
@@ -331,6 +373,9 @@ public class OrderController {
         }
     }
 
+    /**
+     * Helper method to update pizza price display for Build Your Own pizza.
+     */
     private void setupBYOPrice() {
         double toppingsPrice = lv_chosentoppings.getItems().size() * BuildYourOwn.TOPPING_PRICE;
         if (tg_size.getSelectedToggle().toString().contains("Small")) {
@@ -538,7 +583,6 @@ public class OrderController {
      * Helper method to set pizza crust and specialty type.
      */
     private Pizza setSpecialtyCrust(Pizza pizza, PizzaFactory pizzaFactory, String crust) {
-        System.out.println(cb_pizzatype.getValue());
         switch (cb_pizzatype.getValue()) {
             case "Deluxe Pizza" :
                 pizza = pizzaFactory.createDeluxe();

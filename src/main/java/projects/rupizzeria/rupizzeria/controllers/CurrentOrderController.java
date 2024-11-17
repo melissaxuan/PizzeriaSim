@@ -19,6 +19,8 @@ import java.text.DecimalFormat;
 
 /**
  * Controls current order view.
+ *
+ * @author Melissa Xuan
  */
 public class CurrentOrderController {
     private final int COUNT_INCR = 1;
@@ -56,14 +58,6 @@ public class CurrentOrderController {
     private Stage stage;
     private Scene primaryScene;
     private Stage primaryStage;
-    private Order currOrder;
-//    private ObservableList<String> colorList, fruitList, peopleList;
-
-
-
-    @FXML
-    void initialize() {
-    }
 
     /**
      * sets the main controller for navigation purposes
@@ -148,6 +142,10 @@ public class CurrentOrderController {
         }
     }
 
+    /**
+     * Clears pizzas from current order.
+     * @param event action event
+     */
     @FXML
     void clearOrder(ActionEvent event) {
         if (!this.mainController.getCurrentOrder().getPizzas().isEmpty()) {
@@ -157,13 +155,8 @@ public class CurrentOrderController {
     }
 
     /**
-     * Returns current Order object.
-     * @return current Order
+     * Helper method to refresh page with updated prices and updated pizzas in current order.
      */
-    public Order getCurrOrder() {
-        return currOrder;
-    }
-
     private void refreshPage() {
         lv_pizzas.setItems(FXCollections.observableArrayList(this.mainController.getCurrentOrder().getPizzas()));
         txt_orderno.setText("Order number: " + this.mainController.getCurrentOrder().getNumber());
