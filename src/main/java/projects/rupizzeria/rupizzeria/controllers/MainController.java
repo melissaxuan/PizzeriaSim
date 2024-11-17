@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 /**
  * Main controller of the RUPizzeria program.
+ *
  * @author Michael Ehresman
  */
 public class MainController {
@@ -79,6 +80,7 @@ public class MainController {
             alert.showAndWait();
         }
     }
+
     /**
      * Navigates to the oncurrentOrder scene current-order-view.fxml when the image view is clicked.
      */
@@ -106,10 +108,11 @@ public class MainController {
             alert.showAndWait();
         }
     }
+
     /**
      * Navigates to the Order scene order-view.fxml when the image view is clicked.
      */
-@FXML
+    @FXML
     public void Order() {
         Stage popupStage = new Stage(); // Create a new Stage for the popup
 

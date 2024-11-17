@@ -18,7 +18,7 @@ public class ChicagoPizza implements PizzaFactory {
         return new Deluxe();
     }
     /**
-     * Method to createMeatzza pizzas.
+     * Method to create Meatzza pizzas.
      * @return new Meatzza pizza
      */
     public Pizza createMeatzza() {
