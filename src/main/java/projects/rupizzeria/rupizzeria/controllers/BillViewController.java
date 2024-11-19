@@ -26,8 +26,6 @@ import java.util.List;
  * @author Michael Ehresman
  */
 public class BillViewController {
-
-
     @FXML
     private ListView<String> lv_bill;
     @FXML
@@ -39,12 +37,10 @@ public class BillViewController {
     @FXML
     private ComboBox<String> cb_orderNumbers;
 
-
     private MainController mainController;
     private Stage stage;
     private Scene primaryScene;
     private Stage primaryStage;
-    private ObservableList<String> colorList, fruitList, peopleList;
 
     /**
      * Helper method to calculate the total price of all the orders.
