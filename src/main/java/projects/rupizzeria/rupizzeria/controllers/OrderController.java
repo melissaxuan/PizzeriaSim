@@ -431,7 +431,6 @@ public class OrderController {
         lv_availtoppings.setItems(FXCollections.observableArrayList(new ArrayList<Topping>(Arrays.asList(
                 Topping.SAUSAGE, Topping.PEPPERONI, Topping.GREEN_PEPPER, Topping.ONION, Topping.MUSHROOM))));
         for (Topping t : lv_availtoppings.getItems()) {
-            System.out.println();
             selectionToppingPic(t, MAX_OPACITY);
         }
         txt_price.setText("$" + Deluxe.SMALL_PRICE);
@@ -672,7 +671,6 @@ public class OrderController {
     }
 
     private void selectionToppingPic(Topping topping, double opacity) {
-        System.out.println(topping.name());
         switch (topping.name()) {
             case "CHEDDAR" -> {sp_pizza.getChildren().get(CHEDDAR).setOpacity(opacity);}
             case "PEPPERONI" -> {sp_pizza.getChildren().get(PEPPERONI).setOpacity(opacity);}
