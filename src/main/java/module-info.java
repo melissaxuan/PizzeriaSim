@@ -2,6 +2,7 @@ module projects.rupizzeria.rupizzeria {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.desktop;
+    requires junit;
 
 
     opens projects.rupizzeria.rupizzeria to javafx.fxml;
