@@ -78,6 +78,10 @@ public abstract class Pizza {
         this.size = size;
     }
 
+    /**
+     * To string method of the Pizza class
+     * @return the correct formating for the pizza to string
+     */
     @Override
     public String toString() {
         return "$" + price() + " " + this.getSize().toString() + " " +

@@ -17,7 +17,7 @@
    </Label>
 
   <Label fx:id="welcomeText" />
-   <HBox fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="650.0" spacing="20.0">
+   <HBox fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="608.0" spacing="20.0">
       <children>
          <Button fx:id="B_OrderPlaced1" contentDisplay="TOP" onAction="#onOrdersPlaced" text="Orders Placed">
             <graphic>
@@ -42,7 +42,7 @@
          </Button>
         <Button fx:id="B_CurrentOrder" contentDisplay="TOP" onAction="#onCurrentOrder" text="Current Order">
             <graphic>
-               <ImageView fx:id="IV_CurrentOrder" fitHeight="130.0" fitWidth="152.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fx:id="IV_CurrentOrder" fitHeight="130.0" fitWidth="158.0" pickOnBounds="true">
                   <image>
                      <Image url="@Images/cartSponge2.JPG" />
                   </image>
