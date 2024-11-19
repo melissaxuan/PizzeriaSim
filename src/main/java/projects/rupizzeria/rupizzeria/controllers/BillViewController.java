@@ -16,6 +16,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -105,7 +106,8 @@ public class BillViewController {
         lv_bill.getItems().clear();
 
         lv_bill.getItems().add(String.valueOf(pickOrder.toString()));
-        tf_orderTotal.setText(String.valueOf(totalPrice(orderNum)));
+        DecimalFormat df = new DecimalFormat("0.00");
+        tf_orderTotal.setText(String.valueOf(df.format(totalPrice(orderNum))));
 
     }
 

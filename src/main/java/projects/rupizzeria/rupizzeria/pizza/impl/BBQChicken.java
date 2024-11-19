@@ -12,6 +12,7 @@ public class BBQChicken extends Pizza {
     public static final double SMALL_PRICE = 14.99;
     public static final double MED_PRICE = 16.99;
     public static final double LARGE_PRICE = 19.99;
+    public final double FREE = 0.0;
     /**
      * Default BBQChicken constructor.
      */
@@ -31,7 +32,7 @@ public class BBQChicken extends Pizza {
             case SMALL -> {return SMALL_PRICE;}
             case MEDIUM -> {return MED_PRICE;}
             case LARGE -> {return LARGE_PRICE;}
-            default -> {return 0;}
+            default -> {return FREE;}
         }
     }
 }

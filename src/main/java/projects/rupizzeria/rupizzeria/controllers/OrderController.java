@@ -3,9 +3,12 @@ package projects.rupizzeria.rupizzeria.controllers;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import projects.rupizzeria.rupizzeria.pizza.impl.Deluxe;
@@ -20,6 +23,9 @@ import projects.rupizzeria.rupizzeria.util.Crust;
 import projects.rupizzeria.rupizzeria.util.Size;
 import projects.rupizzeria.rupizzeria.util.Topping;
 
+import javafx.scene.image.Image;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -33,6 +39,23 @@ public class OrderController {
     private final double MAX_OPACITY = 1.0;
     private final int MAX_TOPPINGS = 7;
     private final double HUNDRED = 100.0;
+    private final int ALERT_WIDTH = 480;
+    private final int ALERT_HEIGHT = 150;
+    private final int PIZZA_BASE = 0;
+    private final int CHEDDAR = 1;
+    private final int PEPPERONI = 2;
+    private final int OXTAIL = 3;
+    private final int ONION = 4;
+    private final int PROVOLONE = 5;
+    private final int GREEN_PEPPER = 6;
+    private final int SAUSAGE = 7;
+    private final int BEEF = 8;
+    private final int HAM = 9;
+    private final int SPINACH = 10;
+    private final int BLACK_OLIVE = 11;
+    private final int MUSHROOM = 12;
+    private final int PINEAPPLE = 13;
+    private final int BBQ_CHICKEN = 14;
 
     @FXML
     private Button bt_add;
@@ -47,7 +70,7 @@ public class OrderController {
     private ComboBox<String> cb_pizzatype;
 
     @FXML
-    private ImageView iv_pizza;
+    private StackPane sp_pizza;
 
     @FXML
     private ListView<Topping> lv_availtoppings;
@@ -146,8 +169,10 @@ public class OrderController {
     void addTopping(ActionEvent event) {
         if (lv_availtoppings.getSelectionModel().getSelectedItem() != null &&
             lv_chosentoppings.getItems().size() < MAX_TOPPINGS) {
+            selectionToppingPic(lv_availtoppings.getSelectionModel().getSelectedItem(), MAX_OPACITY);
             lv_chosentoppings.getItems().add(lv_availtoppings.getSelectionModel().getSelectedItem());
             lv_availtoppings.getItems().remove(lv_availtoppings.getSelectionModel().getSelectedIndex());
+
         }
         else if (lv_availtoppings.getSelectionModel().getSelectedItem() != null &&
             lv_chosentoppings.getItems().size() >= MAX_TOPPINGS) {
@@ -191,9 +216,6 @@ public class OrderController {
             pizza.setSize(Size.LARGE);
         }
 
-
-      //  mainController.getCurrentOrder().addPizza(pizza);
-
         if (cb_pizzatype.getValue().equalsIgnoreCase("Build Your Own Pizza")) {
             pizza.setToppings(new ArrayList<>(lv_chosentoppings.getItems()));
         }
@@ -204,7 +226,7 @@ public class OrderController {
         alert.setHeaderText(null);
         alert.setContentText("Pizza was added to order " + mainController.getCurrentOrder().getNumber() + " with details: \n" + pizza.toString());
         alert.setResizable(true);
-        alert.getDialogPane().setPrefSize(480, 150);
+        alert.getDialogPane().setPrefSize(ALERT_WIDTH, ALERT_HEIGHT);
         alert.showAndWait();
 
     }
@@ -216,6 +238,7 @@ public class OrderController {
     @FXML
     void removeTopping(ActionEvent event) {
         if (lv_chosentoppings.getSelectionModel().getSelectedItem() != null) {
+            selectionToppingPic(lv_chosentoppings.getSelectionModel().getSelectedItem(), MIN_OPACITY);
             lv_availtoppings.getItems().add(lv_chosentoppings.getSelectionModel().getSelectedItem());
             lv_chosentoppings.getItems().remove(lv_chosentoppings.getSelectionModel().getSelectedIndex());
         }
@@ -233,6 +256,7 @@ public class OrderController {
         rb_smallsize.setSelected(true);
         rb_mediumsize.setSelected(false);
         rb_largesize.setSelected(false);
+        enablePlaceOrder();
         switch(cb_pizzatype.getValue()) {
             case "Deluxe Pizza" -> {
                 setupDeluxe();
@@ -251,7 +275,6 @@ public class OrderController {
                 break;
             }
         }
-        enablePlaceOrder();
     }
 
     /**
@@ -407,6 +430,10 @@ public class OrderController {
         showFixedToppings();
         lv_availtoppings.setItems(FXCollections.observableArrayList(new ArrayList<Topping>(Arrays.asList(
                 Topping.SAUSAGE, Topping.PEPPERONI, Topping.GREEN_PEPPER, Topping.ONION, Topping.MUSHROOM))));
+        for (Topping t : lv_availtoppings.getItems()) {
+            System.out.println();
+            selectionToppingPic(t, MAX_OPACITY);
+        }
         txt_price.setText("$" + Deluxe.SMALL_PRICE);
     }
 
@@ -425,6 +452,9 @@ public class OrderController {
         lv_availtoppings.getItems().removeAll();
         lv_availtoppings.setItems(FXCollections.observableArrayList(new ArrayList<Topping>(Arrays.asList(
                 Topping.BBQ_CHICKEN, Topping.GREEN_PEPPER, Topping.PROVOLONE, Topping.CHEDDAR))));
+        for (Topping t : lv_availtoppings.getItems()) {
+            selectionToppingPic(t, MAX_OPACITY);
+        }
         txt_price.setText("$" + BBQChicken.SMALL_PRICE);
     }
 
@@ -443,6 +473,9 @@ public class OrderController {
         lv_availtoppings.getItems().removeAll();
         lv_availtoppings.setItems(FXCollections.observableArrayList(new ArrayList<Topping>(Arrays.asList(
                 Topping.SAUSAGE, Topping.PEPPERONI, Topping.BEEF, Topping.HAM))));
+        for (Topping t : lv_availtoppings.getItems()) {
+            selectionToppingPic(t, MAX_OPACITY);
+        }
         txt_price.setText("$" + Meatzza.SMALL_PRICE);
     }
 
@@ -492,6 +525,10 @@ public class OrderController {
         bt_placeorder.setDisable(true);
         txt_priceheader.setOpacity(MIN_OPACITY);
         txt_price.setOpacity(MIN_OPACITY);
+        sp_pizza.setOpacity(MIN_OPACITY);
+        for (Node child : sp_pizza.getChildren()) {
+            child.setOpacity(MIN_OPACITY);
+        }
     }
 
     /**
@@ -546,6 +583,13 @@ public class OrderController {
         bt_remove.setOpacity(MAX_OPACITY);
         bt_add.setDisable(false);
         bt_remove.setDisable(false);
+        sp_pizza.setOpacity(MAX_OPACITY);
+
+        for (Node child : sp_pizza.getChildren()) {
+            child.setOpacity(MIN_OPACITY);
+        }
+
+        sp_pizza.getChildren().get(PIZZA_BASE).setOpacity(MAX_OPACITY);
 
         lv_availtoppings.getItems().removeAll();
         lv_availtoppings.setItems(FXCollections.observableArrayList(Topping.values()));
@@ -554,13 +598,20 @@ public class OrderController {
     }
 
     /**
-     * Helper method to enable place order buttons;
+     * Helper method to enable place order buttons.
      */
     private void enablePlaceOrder() {
         bt_placeorder.setOpacity(MAX_OPACITY);
         bt_placeorder.setDisable(false);
         txt_priceheader.setOpacity(MAX_OPACITY);
         txt_price.setOpacity(MAX_OPACITY);
+
+        sp_pizza.setOpacity(MAX_OPACITY);
+        for (Node child : sp_pizza.getChildren()) {
+            child.setOpacity(MIN_OPACITY);
+        }
+
+        sp_pizza.getChildren().get(PIZZA_BASE).setOpacity(MAX_OPACITY);
     }
 
     /**
@@ -620,4 +671,23 @@ public class OrderController {
         return pizza;
     }
 
+    private void selectionToppingPic(Topping topping, double opacity) {
+        System.out.println(topping.name());
+        switch (topping.name()) {
+            case "CHEDDAR" -> {sp_pizza.getChildren().get(CHEDDAR).setOpacity(opacity);}
+            case "PEPPERONI" -> {sp_pizza.getChildren().get(PEPPERONI).setOpacity(opacity);}
+            case "OXTAIL" -> {sp_pizza.getChildren().get(OXTAIL).setOpacity(opacity);}
+            case "ONION" -> {sp_pizza.getChildren().get(ONION).setOpacity(opacity);}
+            case "PROVOLONE" -> {sp_pizza.getChildren().get(PROVOLONE).setOpacity(opacity);}
+            case "GREEN_PEPPER" -> {sp_pizza.getChildren().get(GREEN_PEPPER).setOpacity(opacity);}
+            case "SAUSAGE" -> {sp_pizza.getChildren().get(SAUSAGE).setOpacity(opacity);}
+            case "BEEF" -> {sp_pizza.getChildren().get(BEEF).setOpacity(opacity);}
+            case "HAM" -> {sp_pizza.getChildren().get(HAM).setOpacity(opacity);}
+            case "SPINACH" -> {sp_pizza.getChildren().get(SPINACH).setOpacity(opacity);}
+            case "BLACK_OLIVES" -> {sp_pizza.getChildren().get(BLACK_OLIVE).setOpacity(opacity);}
+            case "MUSHROOM" -> {sp_pizza.getChildren().get(MUSHROOM).setOpacity(opacity);}
+            case "PINEAPPLE" -> {sp_pizza.getChildren().get(PINEAPPLE).setOpacity(opacity);}
+            case "BBQ_CHICKEN" -> {sp_pizza.getChildren().get(BBQ_CHICKEN).setOpacity(opacity);}
+        }
+    }
 }
